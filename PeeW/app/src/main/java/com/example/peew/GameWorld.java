@@ -59,7 +59,7 @@ public class GameWorld {
 
 
         if(isCollision==false && player.canFall()==true) player.setVy(6);
-        else if(isCollision==true) player.setVy(0);
+        else if(isCollision==true) {player.setVy(0);player.setStandingOnPlatform(true);}
     }
 
 }

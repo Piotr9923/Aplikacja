@@ -38,7 +38,7 @@ public class MyButton {
         if(touchedX>x*scaleX && touchedX<(x+width)*scaleX && touchedY>y*scaleY && touchedY<(y+height)*scaleY){
 
             if(isMovingButtoon == true) player.setVx(vx);
-            else player.setVy(vy);
+            else if(isMovingButtoon == false && player.getStandingOnPlatform() == true) {player.setVy(vy);player.setStandingOnPlatform(false);}
 
         }
 

@@ -128,15 +128,30 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 
-        float clickedX = event.getX();
-        float clickedY = event.getY();
+        float clickedX = event.getX(0);
+        float clickedY = event.getY(0);
+        System.out.print(event.getPointerCount()+" ");
+        float clickedX1=0, clickedY1=0;
+
+        if(event.getPointerCount()>1){
+            clickedX1=event.getX(1);
+            clickedY1=event.getY(1);
+
+
+            leftButton.isClicked(clickedX1,clickedY1);
+            rightButton.isClicked(clickedX1,clickedY1);
+            jumpButton.isClicked(clickedX1, clickedY1);
+        }
 
         if(event.getAction()==MotionEvent.ACTION_DOWN){
 
             leftButton.isClicked(clickedX,clickedY);
             rightButton.isClicked(clickedX,clickedY);
             jumpButton.isClicked(clickedX, clickedY);
+
+            System.out.println(clickedX+"'");
         }
+
 
         if(event.getAction()==MotionEvent.ACTION_UP){
 

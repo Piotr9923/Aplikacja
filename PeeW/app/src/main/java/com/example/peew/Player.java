@@ -6,6 +6,7 @@ public class Player extends GameObject {
     private int jumpHeight;
     private boolean canFall = true;
     private int jumpRating;
+    private boolean isStandingOnPlatform = true;
 
     public Player(){
         super();
@@ -34,6 +35,14 @@ public class Player extends GameObject {
 
     public boolean canFall(){
         return canFall;
+    }
+
+    public void setStandingOnPlatform(boolean isStandingOnPlatform){
+        this.isStandingOnPlatform=isStandingOnPlatform;
+    }
+
+    public boolean getStandingOnPlatform(){
+        return isStandingOnPlatform;
     }
 
 }
