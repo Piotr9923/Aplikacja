@@ -6,7 +6,7 @@ public class MyButton {
     private Player player;
     private boolean isMovingButtoon;
     private float scaleX, scaleY;
-    private int vx=6,vy=-30;
+    private int vx=6,vy=-6;
 
     public MyButton(int x, int y, int width, int height, Player player, boolean isMovingButton, float scaleX, float scaleY){
 

@@ -40,7 +40,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
 
         scaleX =(float)screenWidth/1794;
         scaleY = (float)screenHeight/1000;
-        
+
         createImages();
         createButtons();
 
@@ -89,7 +89,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
 
         drawPlatformsImages(canvas);
 
-        System.out.println("scale: "+(float)screenWidth/1794+"|"+(float)screenHeight/1000);
         canvas.restore();
     }
 
@@ -105,11 +104,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
 
     }
 
-    public void update(){
-
-        player.update();
-
-    }
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {

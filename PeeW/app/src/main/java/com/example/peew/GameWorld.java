@@ -39,13 +39,16 @@ public class GameWorld {
 
     public void update(){
 
+
+        player.update();
+
         fallDown();
 
         if(player.getY()>1000) {player.setX(0);player.setY(0);}
     }
 
     private void fallDown(){
-        player.setVy(6);
+
         boolean isCollision = false;
 
         for(int i=0;i<platforms.size();i++){
@@ -55,8 +58,8 @@ public class GameWorld {
         }
 
 
-        if(isCollision==true) player.setVy(0);
-
+        if(isCollision==false && player.canFall()==true) player.setVy(6);
+        else if(isCollision==true) player.setVy(0);
     }
 
 }
