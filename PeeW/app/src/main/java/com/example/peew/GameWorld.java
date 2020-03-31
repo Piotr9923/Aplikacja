@@ -43,8 +43,13 @@ public class GameWorld {
         player.update();
 
         fallDown();
+        movingCollision();
+        if(player.getY()>1000) resetGame();
+    }
 
-        if(player.getY()>1000) {player.setX(0);player.setY(0);}
+    private void resetGame(){
+
+        player.setStartingCoordinate();
     }
 
     private void fallDown(){
@@ -53,13 +58,26 @@ public class GameWorld {
 
         for(int i=0;i<platforms.size();i++){
 
-            if(platforms.get(i).isCollision((player.getX()+player.getHeight()/2),(player.getY()+player.getHeight())
+            if(platforms.get(i).isFallCollision((player.getX()+player.getWidth()/2),(player.getY()+player.getHeight())
             )==true) {isCollision = true;}
         }
 
 
         if(isCollision==false && player.canFall()==true) player.setVy(6);
-        else if(isCollision==true) {player.setVy(0);player.setStandingOnPlatform(true);}
+        else if(isCollision==true && player.getVy()>0) {player.setVy(0);player.setStandingOnPlatform(true);}
     }
+
+    private void movingCollision(){
+
+        boolean isCollision = false;
+        int id=0;
+        for(int i=0;i<platforms.size();i++){
+
+            if(platforms.get(i).isMovingCollision((player.getX()+player.getWidth()/2),(player.getY()+player.getHeight()),player.getVx())==true){isCollision = true;id=i;break;}
+        }
+
+        if(isCollision==true) player.setX(player.getX()+(-1)*player.getVx());
+    }
+
 
 }

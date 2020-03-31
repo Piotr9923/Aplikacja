@@ -25,11 +25,11 @@ public class Levels {
 
         String actualLevel = levelsList.get(levelId);
 
-        for(int i=0;i<10;i++){
-            for(int j=0;j<20;j++){
+        for(int i=0;i<6;i++){
+            for(int j=0;j<29;j++){
 
-                if(actualLevel.charAt(20*i+j) == 'p') {player.setY(50*i);player.setX(50*j);}
-                if(actualLevel.charAt(20*i+j) == 'g') {platforms.add(new Platform(50*j,50*i));}
+                if(actualLevel.charAt(29*i+j) == 'p') {player.setStartingCoordinate(50*j,50*i);player.setStartingCoordinate();}
+                if(actualLevel.charAt(29*i+j) == 'g') {platforms.add(new Platform(50*j,50*i));}
 
             }
 
@@ -40,16 +40,12 @@ public class Levels {
 
     private void createLevels(){
 
-        levelsList.add(new String("00000000000000000000" +
-                "0000000p000000000000" +
-                "00000000000000000000" +
-                "00000000000000000000" +
-                "00000000000000000000" +
-                "00000000000000000000" +
-                "00000000000000000000" +
-                "00000000000000000000" +
-                "00000000000000000000" +
-                "gggggggggggggggggggg"));
+        levelsList.add(new String("00000000000000000000000000000" +
+                "0000000p000000000000gg0000000" +
+                "000000000000gg000000000000000" +
+                "00000000000ggg000000000000000" +
+                "gggggggggggggggggggg000gg00gg" +
+                "00000000000000000000ggg000000"));
 
 
     }

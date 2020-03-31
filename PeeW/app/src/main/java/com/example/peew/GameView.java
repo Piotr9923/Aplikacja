@@ -54,7 +54,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
 
         leftButtonImage = BitmapFactory.decodeResource(this.getResources(),R.drawable.leftbutton);
         rightButtonImage = BitmapFactory.decodeResource(this.getResources(),R.drawable.rightbutton);
-        jumpButtonImage = BitmapFactory.decodeResource(this.getResources(),R.drawable.rightbutton);
+        jumpButtonImage = BitmapFactory.decodeResource(this.getResources(),R.drawable.jumpbutton);
 
         playerImage = BitmapFactory.decodeResource(this.getResources(), R.drawable.player);
         playerImage = Bitmap.createScaledBitmap(playerImage,50,100,true);
@@ -82,12 +82,14 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
 
 
         canvas.drawColor(Color.WHITE);
-        canvas.drawBitmap(leftButtonImage,leftButton.getX(),leftButton.getY(),null);
-        canvas.drawBitmap(rightButtonImage,rightButton.getX(),rightButton.getY(),null);
-        canvas.drawBitmap(jumpButtonImage,jumpButton.getX(),jumpButton.getY(),null);
+
         canvas.drawBitmap(playerImage,player.getX(),player.getY(),null);
 
         drawPlatformsImages(canvas);
+
+        canvas.drawBitmap(leftButtonImage,leftButton.getX(),leftButton.getY(),null);
+        canvas.drawBitmap(rightButtonImage,rightButton.getX(),rightButton.getY(),null);
+        canvas.drawBitmap(jumpButtonImage,jumpButton.getX(),jumpButton.getY(),null);
 
         canvas.restore();
     }
@@ -149,7 +151,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
             rightButton.isClicked(clickedX,clickedY);
             jumpButton.isClicked(clickedX, clickedY);
 
-            System.out.println(clickedX+"'");
         }
 
 
