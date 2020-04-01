@@ -24,28 +24,23 @@ public class Levels {
 
 
         String actualLevel = levelsList.get(levelId);
+        // 0-wolna przestrzeń | 1-platforma | 2-gracz | 3-piłka | 4-bramka
+        for(int i=0;i<20;i++){
+            for(int j=0;j<36;j++){
 
-        for(int i=0;i<6;i++){
-            for(int j=0;j<29;j++){
-
-                if(actualLevel.charAt(29*i+j) == 'p') {player.setStartingCoordinate(50*j,50*i);player.setStartingCoordinate();}
-                if(actualLevel.charAt(29*i+j) == 'g') {platforms.add(new Platform(50*j,50*i));}
+                if(actualLevel.charAt(36*i+j) == '2') {player.setStartingCoordinate(50*j,50*i);player.setStartingCoordinate();}
+                if(actualLevel.charAt(36*i+j) == '1') {platforms.add(new Platform(50*j,50*i));}
 
             }
 
         }
-
-        levelId++;
+        System.out.println("platorms-"+platforms.size())
+;        levelId++;
     }
 
     private void createLevels(){
 
-        levelsList.add(new String("00000000000000000000000000000" +
-                "0000000p000000000000gg0000000" +
-                "000000000000gg000000000000000" +
-                "00000000000ggg000000000000000" +
-                "gggggggggggggggggggg000gg00gg" +
-                "00000000000000000000ggg000000"));
+        levelsList.add(new String("000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002001000000000000000000000000000000000011000000000000001111111110000000111111111111000000000000000000010000000000000000000001100000000000000000000000000000000010010000000000000000000000101111111100001000000000110001000010000000000000000100000001110000000000000000000000000000000001110000000001000000000000000000000010000000000000000000000000000000000000000000000000011100110101010111111100000000000000111100000000000000000000000000000001111100000000000000000000000000000011111100000000000000000000000000000111111100000000000000000000000000111111111100000000000000000000000000"));
 
 
     }

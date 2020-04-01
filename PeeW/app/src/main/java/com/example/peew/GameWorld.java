@@ -13,8 +13,8 @@ public class GameWorld {
     public GameWorld(){
 
         player = new Player();
-        player.setWidth(50);
-        player.setHeight(100);
+        player.setWidth(30);
+        player.setHeight(80);
         platforms = new ArrayList<Platform>();
 
         levels = new Levels(player, platforms);
@@ -44,7 +44,7 @@ public class GameWorld {
 
         fallDown();
         movingCollision();
-        if(player.getY()>1000) resetGame();
+        if(player.getY()>1050) resetGame();
     }
 
     private void resetGame(){
@@ -55,16 +55,18 @@ public class GameWorld {
     private void fallDown(){
 
         boolean isCollision = false;
-
+        int id=0;
         for(int i=0;i<platforms.size();i++){
 
             if(platforms.get(i).isFallCollision((player.getX()+player.getWidth()/2),(player.getY()+player.getHeight())
-            )==true) {isCollision = true;}
+            )==true) {isCollision = true;id=i;break;}
+
         }
 
 
-        if(isCollision==false && player.canFall()==true) player.setVy(6);
-        else if(isCollision==true && player.getVy()>0) {player.setVy(0);player.setStandingOnPlatform(true);}
+        if(isCollision==false && player.canFall()==true) {player.setVy(6);player.setStandingOnPlatform(false);}
+        else if(isCollision==true) {player.setVy(0);player.setStandingOnPlatform(true);System.out.println(id);
+        player.setY(platforms.get(id).getY()-player.getHeight());}
     }
 
     private void movingCollision(){
