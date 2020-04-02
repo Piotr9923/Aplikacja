@@ -38,6 +38,10 @@ public class Player extends GameObject {
         return canFall;
     }
 
+    public void setCanFallTrue(){
+
+        this.canFall = true;
+    }
     public int getVx(){
         return vx;
     }

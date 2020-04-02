@@ -26,7 +26,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
     private int screenWidth, screenHeight;
     private float scaleX, scaleY;
 
-    private Bitmap platformImage;
+    private Bitmap platformImage, platformWithGrassImage;
 
     public GameView(Context context, GameWorld gameWorld) {
         super(context);
@@ -59,8 +59,11 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
         playerImage = BitmapFactory.decodeResource(this.getResources(), R.drawable.player);
         playerImage = Bitmap.createScaledBitmap(playerImage,30,80,true);
 
-        platformImage = BitmapFactory.decodeResource(this.getResources(), R.drawable.ball);
+        platformImage = BitmapFactory.decodeResource(this.getResources(), R.drawable.platform);
         platformImage = Bitmap.createScaledBitmap(platformImage, 50, 50, true);
+
+        platformWithGrassImage = BitmapFactory.decodeResource(this.getResources(), R.drawable.platformwithgrass);
+        platformWithGrassImage = Bitmap.createScaledBitmap(platformWithGrassImage, 50, 50, true);
     }
 
     private void createButtons(){
@@ -81,7 +84,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
         canvas.scale(scaleX,scaleY);
 
 
-        canvas.drawColor(Color.GRAY);
+        canvas.drawColor(Color.WHITE);
 
         canvas.drawBitmap(playerImage,player.getX(),player.getY(),null);
 
@@ -94,15 +97,18 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
         canvas.restore();
     }
 
-    public void drawPlatformsImages(Canvas canvas){
+    private void drawPlatformsImages(Canvas canvas){
         for(int i=0; i<gameWorld.getPlatforms().size();i++){
 
             int platformX = gameWorld.getPlatforms().get(i).getX();
             int platformY = gameWorld.getPlatforms().get(i).getY();
+            boolean isGrass = gameWorld.getPlatforms().get(i).getIsGrass();
 
-            canvas.drawBitmap(platformImage,platformX,platformY,null);
-
+            if(isGrass == true) canvas.drawBitmap(platformWithGrassImage,platformX,platformY,null);
+            else canvas.drawBitmap(platformImage,platformX,platformY,null);
         }
+
+        System.out.println("");
 
     }
 
