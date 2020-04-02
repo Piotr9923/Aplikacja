@@ -42,8 +42,8 @@ public class GameWorld {
 
         player.update();
 
-        fallDown();
         movingCollision();
+        fallDown();
         if(player.getY()>1050) resetGame();
     }
 
@@ -75,7 +75,7 @@ public class GameWorld {
         int id=0;
         for(int i=0;i<platforms.size();i++){
 
-            if(platforms.get(i).isMovingCollision((player.getX()+player.getWidth()/2),(player.getY()+player.getHeight()),player.getVx())==true){isCollision = true;id=i;break;}
+            if(platforms.get(i).isMovingCollision((player.getX()+player.getWidth()/2),player.getY(),player.getHeight())==true){isCollision = true;id=i;break;}
         }
 
         if(isCollision==true) player.setX(player.getX()+(-1)*player.getVx());

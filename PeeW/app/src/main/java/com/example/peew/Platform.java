@@ -12,20 +12,20 @@ public class Platform extends GameObject{
 
     public boolean isFallCollision(int checkedX, int checkedY){
 
-        if(checkedX+10>=x && checkedX-10<=x+width && checkedY>=y && checkedY<=y+6) return true;
+        if(checkedX+15>=x && checkedX-15<=x+width && checkedY>=y && checkedY<=y+6) return true;
 
         return false;
     }
 
-    public boolean isMovingCollision(int checkedX, int checkedY, int vx){
+    public boolean isMovingCollision(int checkedX, int checkedY, int playerHeight){
 
         boolean isCollision=false;
 
-        if(((checkedX+20>x && checkedX+20-vx*2<x )
-                || (checkedX-20>x+width && checkedX-20+vx*2<x+width)) ) isCollision = true;
+        if((checkedX+15>=x )
+                && (checkedX-15<=x+width ) ) isCollision = true;
 
-       if(isCollision==true && checkedY>y && checkedY<= y+height) isCollision=true;
-        else isCollision=false;
+       if((isCollision==true && checkedY>y && checkedY<= y+height) || (isCollision==true && checkedY + playerHeight>y && checkedY + playerHeight<= y+height) || (isCollision==true && checkedY + playerHeight/2>y && checkedY + playerHeight/2<= y+height)) isCollision=true;
+       else isCollision=false;
 
         return isCollision;
 
