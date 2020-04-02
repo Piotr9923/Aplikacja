@@ -9,15 +9,16 @@ public class GameWorld {
     Levels levels;
 
     ArrayList<Platform> platforms;
-
+    ArrayList<Ball> balls;
     public GameWorld(){
 
         player = new Player();
-        player.setWidth(30);
-        player.setHeight(80);
+        player.setWidth(25);
+        player.setHeight(65);
         platforms = new ArrayList<Platform>();
+        balls = new ArrayList<Ball>();
 
-        levels = new Levels(player, platforms);
+        levels = new Levels(player, platforms, balls);
 
         loadNextLevel();
 
@@ -32,6 +33,10 @@ public class GameWorld {
         return platforms;
     }
 
+    public ArrayList<Ball> getBalls(){
+        return balls;
+    }
+
     public Player getPlayer(){
 
         return player;
@@ -41,16 +46,18 @@ public class GameWorld {
 
 
         player.update();
-
+        for(int i=0;i<balls.size();i++) {balls.get(i).update();}
         movingCollision();
         jumpingCollision();
         fallDown();
+        ballsCollision();
+
         if(player.getY()>1050) resetGame();
     }
 
     private void resetGame(){
 
-        player.setStartingCoordinate();
+        player.setStartingPosition();
     }
 
     private void fallDown(){
@@ -91,6 +98,25 @@ public class GameWorld {
         }
         if(isCollision==true) {player.setVy(6);player.setCanFallTrue();}
 
+    }
+
+    private void ballsCollision(){
+
+        for(int j=0;j<balls.size();j++){
+
+            boolean isCollision = false;
+            int id=0;
+            Ball ball = balls.get(j);
+
+            for(int i=0;i<platforms.size();i++){
+
+                if(platforms.get(i).isFallCollision((ball.getX()+ball.getWidth()/2),(ball.getY()+ball.getHeight()))==true) {isCollision = true;id=i;break;}
+            }
+
+            if(isCollision==false && ball.canFall()==true) {ball.setVy(6);}
+            else if(isCollision==true) {ball.setVy(0);ball.setY(platforms.get(id).getY()-ball.getHeight());}
+
+        }
 
 
     }

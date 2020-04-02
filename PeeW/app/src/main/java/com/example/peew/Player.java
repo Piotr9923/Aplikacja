@@ -56,7 +56,7 @@ public class Player extends GameObject {
         return isStandingOnPlatform;
     }
 
-    public void setStartingCoordinate(){
+    public void setStartingPosition(){
 
         this.x = startX;
         this.y = startY;

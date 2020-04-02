@@ -22,6 +22,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
 
     private Bitmap leftButtonImage, rightButtonImage, jumpButtonImage;
     private Bitmap playerImage;
+    private Bitmap ballImage;
 
     private int screenWidth, screenHeight;
     private float scaleX, scaleY;
@@ -57,7 +58,10 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
         jumpButtonImage = BitmapFactory.decodeResource(this.getResources(),R.drawable.jumpbutton);
 
         playerImage = BitmapFactory.decodeResource(this.getResources(), R.drawable.player);
-        playerImage = Bitmap.createScaledBitmap(playerImage,30,80,true);
+        playerImage = Bitmap.createScaledBitmap(playerImage,30,65,true);
+
+        ballImage = BitmapFactory.decodeResource(this.getResources(), R.drawable.ball);
+        ballImage = Bitmap.createScaledBitmap(ballImage,25,25,true);
 
         platformImage = BitmapFactory.decodeResource(this.getResources(), R.drawable.platform);
         platformImage = Bitmap.createScaledBitmap(platformImage, 50, 50, true);
@@ -90,6 +94,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
 
         drawPlatformsImages(canvas);
 
+        drawBalls(canvas);
         canvas.drawBitmap(leftButtonImage,leftButton.getX(),leftButton.getY(),null);
         canvas.drawBitmap(rightButtonImage,rightButton.getX(),rightButton.getY(),null);
         canvas.drawBitmap(jumpButtonImage,jumpButton.getX(),jumpButton.getY(),null);
@@ -98,6 +103,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
     }
 
     private void drawPlatformsImages(Canvas canvas){
+
         for(int i=0; i<gameWorld.getPlatforms().size();i++){
 
             int platformX = gameWorld.getPlatforms().get(i).getX();
@@ -108,7 +114,17 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
             else canvas.drawBitmap(platformImage,platformX,platformY,null);
         }
 
-        System.out.println("");
+    }
+
+    private void drawBalls(Canvas canvas){
+
+        for(int i=0; i<gameWorld.getBalls().size();i++){
+
+            int ballX = gameWorld.getBalls().get(i).getX();
+            int ballY = gameWorld.getBalls().get(i).getY();
+
+             canvas.drawBitmap(ballImage,ballX,ballY,null);
+        }
 
     }
 
@@ -138,7 +154,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
 
         float clickedX = event.getX(0);
         float clickedY = event.getY(0);
-        System.out.print(event.getPointerCount()+" ");
+
         float clickedX1=0, clickedY1=0;
 
         if(event.getPointerCount()>1){

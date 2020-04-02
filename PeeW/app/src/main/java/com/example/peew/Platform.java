@@ -19,7 +19,7 @@ public class Platform extends GameObject{
 
     public boolean isFallCollision(int checkedX, int checkedY){
 
-        if(checkedX+15>=x && checkedX-15<=x+width && checkedY>=y && checkedY<=y+6) return true;
+        if(checkedX+15>=x && checkedX-15<=x+width && checkedY>=y && checkedY<=y+20) return true;
 
         return false;
     }
