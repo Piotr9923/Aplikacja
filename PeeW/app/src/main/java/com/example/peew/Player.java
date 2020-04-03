@@ -1,10 +1,8 @@
 package com.example.peew;
 
-public class Player extends GameObject {
+public class Player extends GameMovingObject {
 
-    private int vx,vy;
     private int jumpHeight;
-    private boolean canFall = true;
     private int jumpRating;
     private boolean isStandingOnPlatform = true;
     private int startX, startY;
@@ -24,29 +22,15 @@ public class Player extends GameObject {
         if(canFall==false && vy==0) canFall=true;
     }
 
-    public void setVx(int vx){
-        this.vx=vx;
-    }
-
+    @Override
     public void setVy(int vy){
         if(vy<0 && isStandingOnPlatform==true) {canFall=false; jumpHeight=y+jumpRating*vy;}
 
         this.vy=vy;
     }
 
-    public boolean canFall(){
-        return canFall;
-    }
 
-    public void setCanFallTrue(){
 
-        this.canFall = true;
-    }
-    public int getVx(){
-        return vx;
-    }
-
-    public int getVy(){ return vy; }
 
     public void setStandingOnPlatform(boolean isStandingOnPlatform){
         this.isStandingOnPlatform=isStandingOnPlatform;
