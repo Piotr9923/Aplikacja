@@ -12,7 +12,7 @@ import android.view.SurfaceView;
 
 import java.util.ArrayList;
 
-public class GameView extends SurfaceView implements SurfaceHolder.Callback{
+public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     private GameWorld gameWorld;
     private Player player;
@@ -39,8 +39,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
         screenWidth = getResources().getDisplayMetrics().widthPixels;
         screenHeight = getResources().getDisplayMetrics().heightPixels;
 
-        scaleX =(float)screenWidth/1794;
-        scaleY = (float)screenHeight/1000;
+        scaleX = (float) screenWidth / 1794;
+        scaleY = (float) screenHeight / 1000;
 
         createImages();
         createButtons();
@@ -51,22 +51,22 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
 
     }
 
-    private void createImages(){
+    private void createImages() {
 
-        leftButtonImage = BitmapFactory.decodeResource(this.getResources(),R.drawable.leftbutton);
-        leftButtonImage = Bitmap.createScaledBitmap(leftButtonImage,170,170,true);
+        leftButtonImage = BitmapFactory.decodeResource(this.getResources(), R.drawable.leftbutton);
+        leftButtonImage = Bitmap.createScaledBitmap(leftButtonImage, 170, 170, true);
 
-        rightButtonImage = BitmapFactory.decodeResource(this.getResources(),R.drawable.rightbutton);
-        rightButtonImage = Bitmap.createScaledBitmap(rightButtonImage,170,170,true);
+        rightButtonImage = BitmapFactory.decodeResource(this.getResources(), R.drawable.rightbutton);
+        rightButtonImage = Bitmap.createScaledBitmap(rightButtonImage, 170, 170, true);
 
-        jumpButtonImage = BitmapFactory.decodeResource(this.getResources(),R.drawable.jumpbutton);
-        jumpButtonImage = Bitmap.createScaledBitmap(jumpButtonImage,170,170,true);
+        jumpButtonImage = BitmapFactory.decodeResource(this.getResources(), R.drawable.jumpbutton);
+        jumpButtonImage = Bitmap.createScaledBitmap(jumpButtonImage, 170, 170, true);
 
         playerImage = BitmapFactory.decodeResource(this.getResources(), R.drawable.player);
-        playerImage = Bitmap.createScaledBitmap(playerImage,player.getWidth(),player.getHeight(),true);
+        playerImage = Bitmap.createScaledBitmap(playerImage, player.getWidth(), player.getHeight(), true);
 
         ballImage = BitmapFactory.decodeResource(this.getResources(), R.drawable.ball);
-        ballImage = Bitmap.createScaledBitmap(ballImage,25,25,true);
+        ballImage = Bitmap.createScaledBitmap(ballImage, 25, 25, true);
 
         platformImage = BitmapFactory.decodeResource(this.getResources(), R.drawable.platform);
         platformImage = Bitmap.createScaledBitmap(platformImage, 50, 50, true);
@@ -75,11 +75,11 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
         platformWithGrassImage = Bitmap.createScaledBitmap(platformWithGrassImage, 50, 50, true);
     }
 
-    private void createButtons(){
+    private void createButtons() {
 
-        leftButton = new MyButton(90,800,leftButtonImage.getWidth(),leftButtonImage.getHeight(),player,true,scaleX,scaleY);
-        rightButton = new MyButton(350,800,rightButtonImage.getWidth(),rightButtonImage.getHeight(),player,true,scaleX,scaleY);
-        jumpButton = new MyButton(1500,800,jumpButtonImage.getWidth(),jumpButtonImage.getHeight(),player,false,scaleX,scaleY);
+        leftButton = new MyButton(90, 800, leftButtonImage.getWidth(), leftButtonImage.getHeight(), player, true, scaleX, scaleY);
+        rightButton = new MyButton(350, 800, rightButtonImage.getWidth(), rightButtonImage.getHeight(), player, true, scaleX, scaleY);
+        jumpButton = new MyButton(1500, 800, jumpButtonImage.getWidth(), jumpButtonImage.getHeight(), player, false, scaleX, scaleY);
 
 
         leftButton.setLeftDirectory();
@@ -90,45 +90,45 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
         super.draw(canvas);
         canvas.save();
 
-        canvas.scale(scaleX,scaleY);
+        canvas.scale(scaleX, scaleY);
 
-        System.out.println(leftButtonImage.getWidth()+","+leftButtonImage.getHeight());
         canvas.drawColor(Color.WHITE);
 
-        canvas.drawBitmap(playerImage,player.getX(),player.getY(),null);
+        canvas.drawBitmap(playerImage, player.getX(), player.getY(), null);
 
         drawPlatformsImages(canvas);
 
         drawBalls(canvas);
-        canvas.drawBitmap(leftButtonImage,leftButton.getX(),leftButton.getY(),null);
-        canvas.drawBitmap(rightButtonImage,rightButton.getX(),rightButton.getY(),null);
-        canvas.drawBitmap(jumpButtonImage,jumpButton.getX(),jumpButton.getY(),null);
+        canvas.drawBitmap(leftButtonImage, leftButton.getX(), leftButton.getY(), null);
+        canvas.drawBitmap(rightButtonImage, rightButton.getX(), rightButton.getY(), null);
+        canvas.drawBitmap(jumpButtonImage, jumpButton.getX(), jumpButton.getY(), null);
 
         canvas.restore();
     }
 
-    private void drawPlatformsImages(Canvas canvas){
+    private void drawPlatformsImages(Canvas canvas) {
 
-        for(int i=0; i<gameWorld.getPlatforms().size();i++){
+        for (int i = 0; i < gameWorld.getPlatforms().size(); i++) {
 
             int platformX = gameWorld.getPlatforms().get(i).getX();
             int platformY = gameWorld.getPlatforms().get(i).getY();
             boolean isGrass = gameWorld.getPlatforms().get(i).getIsGrass();
 
-            if(isGrass == true) canvas.drawBitmap(platformWithGrassImage,platformX,platformY,null);
-            else canvas.drawBitmap(platformImage,platformX,platformY,null);
+            if (isGrass == true)
+                canvas.drawBitmap(platformWithGrassImage, platformX, platformY, null);
+            else canvas.drawBitmap(platformImage, platformX, platformY, null);
         }
 
     }
 
-    private void drawBalls(Canvas canvas){
+    private void drawBalls(Canvas canvas) {
 
-        for(int i=0; i<gameWorld.getBalls().size();i++){
+        for (int i = 0; i < gameWorld.getBalls().size(); i++) {
 
             int ballX = gameWorld.getBalls().get(i).getX();
             int ballY = gameWorld.getBalls().get(i).getY();
 
-             canvas.drawBitmap(ballImage,ballX,ballY,null);
+            canvas.drawBitmap(ballImage, ballX, ballY, null);
         }
 
     }
@@ -137,7 +137,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
 
-        this.gameThread = new GameThread(this,gameWorld,holder);
+        this.gameThread = new GameThread(this, gameWorld, holder);
         this.gameThread.setRunning(true);
         this.gameThread.start();
 
@@ -160,28 +160,28 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
         float clickedX = event.getX(0);
         float clickedY = event.getY(0);
 
-        float clickedX1=0, clickedY1=0;
+        float clickedX1 = 0, clickedY1 = 0;
 
-        if(event.getPointerCount()>1){
-            clickedX1=event.getX(1);
-            clickedY1=event.getY(1);
+        if (event.getPointerCount() > 1) {
+            clickedX1 = event.getX(1);
+            clickedY1 = event.getY(1);
 
 
-            leftButton.isClicked(clickedX1,clickedY1);
-            rightButton.isClicked(clickedX1,clickedY1);
+            leftButton.isClicked(clickedX1, clickedY1);
+            rightButton.isClicked(clickedX1, clickedY1);
             jumpButton.isClicked(clickedX1, clickedY1);
         }
 
-        if(event.getAction()==MotionEvent.ACTION_DOWN){
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
 
-            leftButton.isClicked(clickedX,clickedY);
-            rightButton.isClicked(clickedX,clickedY);
+            leftButton.isClicked(clickedX, clickedY);
+            rightButton.isClicked(clickedX, clickedY);
             jumpButton.isClicked(clickedX, clickedY);
 
         }
 
 
-        if(event.getAction()==MotionEvent.ACTION_UP){
+        if (event.getAction() == MotionEvent.ACTION_UP) {
 
             player.setVx(0);
 

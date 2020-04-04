@@ -24,7 +24,9 @@ public class Player extends GameMovingObject {
 
     @Override
     public void setVy(int vy){
-        if(vy<0 && isStandingOnPlatform==true) {canFall=false; jumpHeight=y+jumpRating*vy;}
+        if(vy<0 && isStandingOnPlatform==true) {
+            canFall=false; jumpHeight=y+jumpRating*vy;
+        }
 
         this.vy=vy;
     }
@@ -37,6 +39,7 @@ public class Player extends GameMovingObject {
     }
 
     public boolean getStandingOnPlatform(){
+
         return isStandingOnPlatform;
     }
 
@@ -44,6 +47,8 @@ public class Player extends GameMovingObject {
 
         this.x = startX;
         this.y = startY;
+        this.vy = 6;
+        this.canFall=true;
     }
 
     public void setStartingCoordinate(int x, int y){

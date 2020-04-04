@@ -10,8 +10,8 @@ public class Ball extends GameMovingObject {
         super(x, y);
         this.width = 25;
         this.height = 25;
-        this.vx = 2;
-        this.vy = 0;
+        this.vx = 0;
+        this.vy = -4;
         this.startX = x;
         this.startY = y;
     }

@@ -13,7 +13,7 @@ public class GameWorld {
 
     CollisionDetector collisionDetector;
 
-    public GameWorld(){
+    public GameWorld() {
 
         player = new Player();
         player.setWidth(25);
@@ -23,43 +23,50 @@ public class GameWorld {
 
         levels = new Levels(player, platforms, balls);
         loadNextLevel();
-        collisionDetector = new CollisionDetector(player,balls,platforms);
+        collisionDetector = new CollisionDetector(player, balls, platforms);
     }
 
-    private void loadNextLevel(){
+    private void loadNextLevel() {
 
         levels.loadNextLevel();
     }
 
-    public ArrayList<Platform> getPlatforms(){
+    public ArrayList<Platform> getPlatforms() {
         return platforms;
     }
 
-    public ArrayList<Ball> getBalls(){
+    public ArrayList<Ball> getBalls() {
         return balls;
     }
 
-    public Player getPlayer(){
+    public Player getPlayer() {
 
         return player;
     }
 
-    public void update(){
+    public void update() {
 
 
         player.update();
-        for(int i=0;i<balls.size();i++) {balls.get(i).update();}
+        for (int i = 0; i < balls.size(); i++) {
+            balls.get(i).update();
+        }
 
         collisionDetector.detecteCollision();
 
-        if(player.getY()>1050) resetGame();
+        if (player.getY() > 1050) resetGame();
+        for (int i = 0; i < balls.size(); i++) {
+            if (balls.get(i).getY() > 1050) resetGame();
+        }
     }
 
-    private void resetGame(){
+    private void resetGame() {
 
         player.setStartingPosition();
+        for (int i = 0; i < balls.size(); i++) {
+            balls.get(i).setStartingPosition();
+        }
     }
-
 
 
 }
