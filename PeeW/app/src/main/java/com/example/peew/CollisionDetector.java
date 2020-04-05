@@ -20,6 +20,8 @@ public class CollisionDetector {
 
     public void detecteCollision(){
 
+
+        driveTheBall();
         movingCollision(player);
         jumpingCollision(player);
         fallDown(player);
@@ -29,6 +31,25 @@ public class CollisionDetector {
             movingCollision(balls.get(j));
             jumpingCollision(balls.get(j));
             fallDown(balls.get(j));
+
+        }
+
+    }
+
+    private void driveTheBall(){
+
+        for(int i=0;i<balls.size();i++){
+            boolean isCollision=false;
+
+            if(     player.getX()+player.getWidth()>=balls.get(i).getX() &&
+                    player.getX()<=balls.get(i).getX()+balls.get(i).getWidth()
+            ) isCollision=true;
+
+            if(   (isCollision==true && balls.get(i).getY()>player.getY() && balls.get(i).getY()<=player.getY()+player.getHeight())  ) {isCollision=true;}
+            else isCollision=false;
+
+            if(isCollision==true){ balls.get(i).setX(balls.get(i).getX()+player.getVx());}
+            if(movingCollision(balls.get(i))==true){balls.get(i).setX(balls.get(i).getX()-player.getVx());player.setX(player.getX()-player.getVx());}
 
         }
 
@@ -58,7 +79,7 @@ public class CollisionDetector {
         }
    }
 
-    private void movingCollision(GameMovingObject object){
+    private boolean movingCollision(GameMovingObject object){
 
         boolean isCollision = false;
         int id=0;
@@ -83,6 +104,8 @@ public class CollisionDetector {
 
             if (isCollision == true) object.setX(object.getX() + (-1) * object.getVx());
         }
+
+        return isCollision;
     }
 
     private void jumpingCollision(GameMovingObject object){
@@ -91,15 +114,15 @@ public class CollisionDetector {
 
         for(int i=0;i<platforms.size();i++){
 
-            if (    object.getX() + object.getWidth() >= platforms.get(i).getX() &&
-                    object.getX()  <= platforms.get(i).getX() + platforms.get(i).getWidth() &&
+            if (    object.getX() + object.getWidth() > platforms.get(i).getX() &&
+                    object.getX()  < platforms.get(i).getX() + platforms.get(i).getWidth() &&
                     object.getY() <= platforms.get(i).getY() + platforms.get(i).getHeight() &&
-                    object.getY() >= platforms.get(i).getY() + platforms.get(i).getHeight() - 10
+                    object.getY() >= platforms.get(i).getY() + platforms.get(i).getHeight() - platforms.get(i).getHeight()
             ){isCollision=true; break;}
 
         }
 
-        if(isCollision==true) {object.setVy(6);object.setCanFallTrue();}
+        if(isCollision==true && object.getVy()<0) {object.setVy(6);object.setCanFallTrue();}
 
     }
 
