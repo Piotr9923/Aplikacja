@@ -25,6 +25,7 @@ public class GameThread extends Thread {
             try {
                 canvas = this.surfaceHolder.lockCanvas();
 
+                if(gameWorld.getLevels().getIsFinished()==true) this.stop();
                 this.gameWorld.update();
 
                 synchronized (canvas)  {

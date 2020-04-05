@@ -23,6 +23,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     private Bitmap leftButtonImage, rightButtonImage, jumpButtonImage;
     private Bitmap playerImage;
     private Bitmap ballImage;
+    private Bitmap goalImage;
 
     private int screenWidth, screenHeight;
     private float scaleX, scaleY;
@@ -68,6 +69,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         ballImage = BitmapFactory.decodeResource(this.getResources(), R.drawable.ball);
         ballImage = Bitmap.createScaledBitmap(ballImage, 25, 25, true);
 
+        goalImage = BitmapFactory.decodeResource(this.getResources(), R.drawable.goal);
+        goalImage = Bitmap.createScaledBitmap(goalImage, 50, 50, true);
+
         platformImage = BitmapFactory.decodeResource(this.getResources(), R.drawable.platform);
         platformImage = Bitmap.createScaledBitmap(platformImage, 50, 50, true);
 
@@ -92,13 +96,16 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
         canvas.scale(scaleX, scaleY);
 
-        canvas.drawColor(Color.WHITE);
+        canvas.drawColor(Color.BLUE);
 
         canvas.drawBitmap(playerImage, player.getX(), player.getY(), null);
 
         drawPlatformsImages(canvas);
 
         drawBalls(canvas);
+
+        drawGoals(canvas);
+
         canvas.drawBitmap(leftButtonImage, leftButton.getX(), leftButton.getY(), null);
         canvas.drawBitmap(rightButtonImage, rightButton.getX(), rightButton.getY(), null);
         canvas.drawBitmap(jumpButtonImage, jumpButton.getX(), jumpButton.getY(), null);
@@ -133,6 +140,17 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     }
 
+    private void drawGoals(Canvas canvas) {
+
+        for (int i = 0; i < gameWorld.getGoals().size(); i++) {
+
+            int goalX = gameWorld.getGoals().get(i).getX();
+            int goalY = gameWorld.getGoals().get(i).getY();
+
+            canvas.drawBitmap(goalImage, goalX, goalY, null);
+
+        }
+    }
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
