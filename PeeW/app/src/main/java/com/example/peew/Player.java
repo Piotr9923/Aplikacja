@@ -6,10 +6,14 @@ public class Player extends GameMovingObject {
     private int jumpRating;
     private boolean isStandingOnPlatform = true;
     private int startX, startY;
+    private int maxVx;
+    private int maxVy;
 
     public Player(){
         super();
         jumpRating=20;
+        maxVx=6;
+        maxVy=-6;
     }
 
 
@@ -55,6 +59,23 @@ public class Player extends GameMovingObject {
 
         this.startX = x;
         this.startY = y;
+
+    }
+
+    public void moveRight(){
+        this.vx=maxVx;
+    }
+
+    public void moveLeft(){
+        this.vx=-maxVx;
+    }
+
+    public void jump(){
+        this.setVy(maxVy);
+    }
+
+    public void shoot(){
+
 
     }
 }

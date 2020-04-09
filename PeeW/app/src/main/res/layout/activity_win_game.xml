@@ -19,7 +19,7 @@
         android:layout_marginEnd="3dp"
         android:layout_marginRight="3dp"
         android:gravity="center"
-        android:text="You win!!"
+        android:text="@string/win"
         android:textSize="70dp"
         tools:layout_editor_absoluteX="306dp"
         tools:layout_editor_absoluteY="98dp" />
@@ -34,7 +34,7 @@
         android:layout_marginStart="110dp"
         android:layout_marginLeft="100dp"
         android:layout_marginBottom="50dp"
-        android:text="Menu" />
+        android:text="@string/menu" />
 
     <Button
         android:id="@+id/playAgain"
@@ -46,5 +46,5 @@
         android:layout_marginEnd="99dp"
         android:layout_marginRight="100dp"
         android:layout_marginBottom="50dp"
-        android:text="Play Again" />
+        android:text="@string/play_again" />
 </RelativeLayout>
