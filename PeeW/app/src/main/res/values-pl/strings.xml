@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">PeeW</string>
+    <string name="start_game">Rozpocznij grę</string>
+    <string name="how_play">Jak grać</string>
+    <string name="exit">Wyjście</string>
+    <string name="win">Wygrałeś</string>
+    <string name="play_again">Zagraj ponownie</string>
+    <string name="menu">Menu</string>
+
+</resources>

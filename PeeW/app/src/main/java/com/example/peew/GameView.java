@@ -61,8 +61,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         jumpButtonImage = BitmapFactory.decodeResource(this.getResources(), R.drawable.jumpbutton);
         jumpButtonImage = Bitmap.createScaledBitmap(jumpButtonImage, 170, 170, true);
 
-      //  shootButtonImage = BitmapFactory.decodeResource(this.getResources(), R.drawable.ball);
-      //  shootButtonImage = Bitmap.createScaledBitmap(shootButtonImage, 170, 170, true);
+        shootButtonImage = BitmapFactory.decodeResource(this.getResources(), R.drawable.ball);
+        shootButtonImage = Bitmap.createScaledBitmap(shootButtonImage, 170, 170, true);
 
         playerImage = BitmapFactory.decodeResource(this.getResources(), R.drawable.player);
         playerImage = Bitmap.createScaledBitmap(playerImage, player.getWidth(), player.getHeight(), true);
@@ -85,7 +85,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         leftButton = new MovingButton(90, 800, leftButtonImage.getWidth(), leftButtonImage.getHeight(), player, true, scaleX, scaleY);
         rightButton = new MovingButton(350, 800, rightButtonImage.getWidth(), rightButtonImage.getHeight(), player, false, scaleX, scaleY);
         jumpButton = new JumpButton(1500, 800, jumpButtonImage.getWidth(), jumpButtonImage.getHeight(), player, scaleX, scaleY);
-       // shootButton = new MyButton(1250, 800, shootButtonImage.getWidth(), shootButtonImage.getHeight(), player, false, scaleX, scaleY);
+        shootButton = new ShootButton(1250, 800, shootButtonImage.getWidth(), shootButtonImage.getHeight(), gameWorld, scaleX, scaleY);
 
     }
 
@@ -190,7 +190,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
             leftButton.isClicked(clickedX1, clickedY1);
             rightButton.isClicked(clickedX1, clickedY1);
             jumpButton.isClicked(clickedX1, clickedY1);
-     //       shootButton.isClicked(clickedX, clickedY);
+            shootButton.isClicked(clickedX, clickedY);
 
         }
 
@@ -199,7 +199,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
             leftButton.isClicked(clickedX, clickedY);
             rightButton.isClicked(clickedX, clickedY);
             jumpButton.isClicked(clickedX, clickedY);
-//            shootButton.isClicked(clickedX, clickedY);
+            shootButton.isClicked(clickedX, clickedY);
 
         }
 

@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">PeeW</string>
-    <string name="start_game">Start Game</string>
+    <string name="start_game">Start game</string>
     <string name="how_play">How to play</string>
     <string name="exit">Exit</string>
-    <string name="win">You win!!</string>
+    <string name="win">You win !!</string>
     <string name="play_again">Play again</string>
     <string name="menu">Menu</string>
 

@@ -23,6 +23,7 @@ public class GameActivity extends Activity {
         gameView = new GameView(this, gameWorld);
 
         setContentView(gameView);
+
     }
 
 
