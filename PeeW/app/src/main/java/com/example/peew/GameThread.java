@@ -26,9 +26,10 @@ public class GameThread extends Thread {
                 canvas = this.surfaceHolder.lockCanvas();
 
                 if(gameWorld.getLevels().getIsFinished()==true) this.stop();
-                this.gameWorld.update();
+
 
                 synchronized (canvas)  {
+                    this.gameWorld.update();
                     this.gameView.draw(canvas);
                 }
             }catch(Exception e)  {
@@ -43,6 +44,7 @@ public class GameThread extends Thread {
             // Interval to redraw game
             // (Change nanoseconds to milliseconds)
             long waitTime = (now - startTime)/1000000;
+
             if(waitTime < 20)  {
                 waitTime= 20; // Millisecond.
             }

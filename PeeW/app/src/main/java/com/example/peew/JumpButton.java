@@ -16,10 +16,11 @@ public class JumpButton extends MyButton {
     @Override
     public void action(){
 
-        System.out.println("jump"+player.getStandingOnPlatform());
+        if(player.getStandingOnPlatform() == true) {
 
-        if(player.getStandingOnPlatform() == true) {player.jump();player.setStandingOnPlatform(false);}
+            player.jump();player.setStandingOnPlatform(false);
 
+        }
 
     }
 

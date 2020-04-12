@@ -57,10 +57,8 @@ public class CollisionDetector {
             ) {isCollision=true;}
             else isCollision=false;
 
-            System.out.println("Drive:"+(balls.get(i).getY()>player.getY())+","+(balls.get(i).getY()<player.getY()+player.getHeight()));
-            System.out.println( balls.get(i).getY()+"<"+(player.getY()+"+"+player.getHeight()));
-            if(isCollision==true){ balls.get(i).setX(balls.get(i).getX()+player.getVx());}
-            if(movingCollision(balls.get(i))==true){balls.get(i).setX(balls.get(i).getX()-player.getVx());player.setX(player.getX()-player.getVx());}
+            if(isCollision==true){balls.get(i).setX(balls.get(i).getX()+player.getVx());balls.get(i).setVx(0);}
+            if(isCollision==true && movingCollision(balls.get(i))==true){balls.get(i).setX(balls.get(i).getX()-player.getVx());player.setX(player.getX()-player.getVx());}
 
         }
 
@@ -107,7 +105,7 @@ public class CollisionDetector {
 
         if(object==player) {
             if(isCollision==false && player.canFall()==true) {player.setVy(6);player.setStandingOnPlatform(false);}
-            else if(isCollision==true) {System.out.println("********************************");player.setVy(0);player.setStandingOnPlatform(true);player.setY(balls.get(platformId).getY()-player.getHeight());}
+            else if(isCollision==true) {;player.setVy(0);player.setStandingOnPlatform(true);player.setY(balls.get(platformId).getY()-player.getHeight());}
         }
         else {
             if (isCollision == false && object.canFall() == true) {object.setVy(6);}
@@ -142,14 +140,15 @@ public class CollisionDetector {
 
         for(int i=0;i<platforms.size();i++){
 
-            if(     (object.getX()+object.getWidth()>=platforms.get(i).getX() ) &&
-                    (object.getX()<=platforms.get(i).getX()+platforms.get(i).getWidth() )
+
+            if(     (object.getX()+object.getWidth()>platforms.get(i).getX() ) &&
+                    (object.getX()<platforms.get(i).getX()+platforms.get(i).getWidth() )
             ) isCollision = true;
 
             if(     (isCollision==true && object.getY()>platforms.get(i).getY() && object.getY()<= platforms.get(i).getY()+platforms.get(i).getHeight()) ||
                     (isCollision==true && object.getY() + object.getHeight()>platforms.get(i).getY() && object.getY() + object.getHeight()<= platforms.get(i).getY()+platforms.get(i).getHeight()) ||
                     (isCollision==true && object.getY() + object.getHeight()/2>platforms.get(i).getY() && object.getY() + object.getHeight()/2<= platforms.get(i).getY()+platforms.get(i).getHeight())
-            ) {isCollision=true;break;}
+            ) {isCollision=true;id=i;break;}
             else isCollision=false;
 
         }
@@ -157,8 +156,9 @@ public class CollisionDetector {
         if(object==player) {
             if (isCollision == true) player.setX(player.getX() + (-1) * player.getVx());
         }else{
-
-            if (isCollision == true) object.setX(object.getX() + (-1) * object.getVx());
+            //TODO funkcja nie zatrzymująca piłki
+            if(isCollision == true && platforms.get(id).getY()+platforms.get(id).getHeight() != object.getY()+object.getHeight()){object.setX(object.getX() + (-1) * object.getVx());}
+            else if (isCollision == true) {object.setX(object.getX() + (-1) * object.getVx());object.setVx(0);}
         }
 
         return isCollision;

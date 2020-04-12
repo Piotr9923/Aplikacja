@@ -56,7 +56,6 @@ public class GameWorld {
 
     public void update() {
 
-
         player.update();
         for (int i = 0; i < balls.size(); i++) {
             balls.get(i).update();
@@ -67,9 +66,28 @@ public class GameWorld {
         if (player.getY() > 1050) resetGame();
         for (int i = 0; i < balls.size(); i++) {
             if (balls.get(i).getY() > 1050) resetGame();
+            if (balls.get(i).getX() > 1800 || balls.get(i).getX() + balls.get(i).getHeight() < 0) resetGame();
         }
 
         if(isLevelWin()==true) levels.loadNextLevel();
+
+        checkCanPlayerKick();
+    }
+
+    private void checkCanPlayerKick(){
+
+        boolean isBallNear=false;
+        for(int i=0;i<balls.size();i++){
+
+            if(     player.getX()+player.getWidth()+10>=balls.get(i).getX() &&
+                    player.getX()-10<=balls.get(i).getX()+balls.get(i).getWidth() &&
+                    player.getStandingOnPlatform()==true &&
+                    player.getY()+player.getHeight() == balls.get(i).getY()+balls.get(i).getHeight()
+            ) {isBallNear=true;player.setKickedBall(balls.get(i));break;}
+        }
+        if(isBallNear==true) player.setCanKick(true);
+        else player.setCanKick(false);
+
     }
 
     private boolean isLevelWin(){
@@ -97,6 +115,8 @@ public class GameWorld {
         player.setStartingPosition();
         for (int i = 0; i < balls.size(); i++) {
             balls.get(i).setStartingPosition();
+            balls.get(i).setVx(0);
+            balls.get(i).setVy(0);
         }
     }
 

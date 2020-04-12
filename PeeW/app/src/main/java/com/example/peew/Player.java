@@ -8,14 +8,33 @@ public class Player extends GameMovingObject {
     private int startX, startY;
     private int maxVx;
     private int maxVy;
+    private boolean canKick;
+    private Ball kickedBall;
 
     public Player(){
         super();
         jumpRating=20;
         maxVx=6;
         maxVy=-6;
+        canKick =false;
     }
 
+    public void setCanKick(boolean canKick){
+
+        this.canKick = canKick;
+    }
+
+    public void setKickedBall(Ball ball){
+
+        this.kickedBall = ball;
+
+    }
+
+    public boolean getCanKick(){
+
+        return canKick;
+
+    }
 
     public void update(){
 
@@ -74,8 +93,9 @@ public class Player extends GameMovingObject {
         this.setVy(maxVy);
     }
 
-    public void shoot(){
+    public void kick(){
 
-
+        if(this.x<kickedBall.getX()+kickedBall.getWidth()/2) kickedBall.setVx(4);
+        else kickedBall.setVx(-4);
     }
 }

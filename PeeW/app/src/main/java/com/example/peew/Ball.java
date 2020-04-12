@@ -4,7 +4,6 @@ public class Ball extends GameMovingObject {
 
     private int startX, startY;
 
-
     public Ball(int x, int y){
 
         super(x, y);
