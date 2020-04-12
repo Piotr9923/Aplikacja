@@ -16,7 +16,7 @@ public class ShootButton extends MyButton {
     @Override
     public void action(){
 
-
+        gameWorld.getPlayer().shoot();
 
 
     }

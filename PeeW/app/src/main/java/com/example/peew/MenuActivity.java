@@ -45,7 +45,6 @@ public class MenuActivity extends Activity {
         });
         updateLanguageImage(language);
 
-
         startGameButton = (Button) findViewById(R.id.startGameButton);
         exitGameButton = (Button) findViewById(R.id.exit);
         howToPlay = (Button) findViewById(R.id.how);
