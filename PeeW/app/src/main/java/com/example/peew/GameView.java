@@ -16,9 +16,11 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     private Player player;
     private GameThread gameThread;
 
-    private MyButton leftButton, rightButton, jumpButton, kickButton;
+    private MovingButton leftButton, rightButton;
+    private JumpButton jumpButton;
+    private KickButton kickButton;
 
-    private Bitmap leftButtonImage, rightButtonImage, jumpButtonImage, kickButtonImage;
+    private Bitmap leftButtonImage, rightButtonImage, jumpButtonImage, kickButtonImage, cancelKickButtonImage;
     private Bitmap playerImage;
     private Bitmap ballImage;
     private Bitmap goalImage;
@@ -28,11 +30,14 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     private Bitmap platformImage, platformWithGrassImage;
 
+    private boolean isKickingView;
+    private float kickedX,kickedY;
+
     public GameView(Context context, GameWorld gameWorld) {
         super(context);
 
         this.gameWorld = gameWorld;
-
+        isKickingView = false;
         player = gameWorld.getPlayer();
 
         screenWidth = getResources().getDisplayMetrics().widthPixels;
@@ -40,6 +45,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
         scaleX = (float) screenWidth / 1794;
         scaleY = (float) screenHeight / 1000;
+
+        kickedX = -1;
+        kickedY = -1;
 
         createImages();
         createButtons();
@@ -63,6 +71,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
         kickButtonImage = BitmapFactory.decodeResource(this.getResources(), R.drawable.kickbutton);
         kickButtonImage = Bitmap.createScaledBitmap(kickButtonImage, 170, 170, true);
+
+        cancelKickButtonImage= BitmapFactory.decodeResource(this.getResources(), R.drawable.cancelkickbutton);
+        cancelKickButtonImage = Bitmap.createScaledBitmap(cancelKickButtonImage, 170, 170, true);
 
         playerImage = BitmapFactory.decodeResource(this.getResources(), R.drawable.player);
         playerImage = Bitmap.createScaledBitmap(playerImage, player.getWidth(), player.getHeight(), true);
@@ -107,11 +118,13 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
         drawGoals(canvas);
 
-        canvas.drawBitmap(leftButtonImage, leftButton.getX(), leftButton.getY(), null);
-        canvas.drawBitmap(rightButtonImage, rightButton.getX(), rightButton.getY(), null);
-        canvas.drawBitmap(jumpButtonImage, jumpButton.getX(), jumpButton.getY(), null);
+        if(isKickingView==false){
+            canvas.drawBitmap(leftButtonImage, leftButton.getX(), leftButton.getY(), null);
+            canvas.drawBitmap(rightButtonImage, rightButton.getX(), rightButton.getY(), null);
+            canvas.drawBitmap(jumpButtonImage, jumpButton.getX(), jumpButton.getY(), null);
+        }
        if(player.getCanKick()==true) canvas.drawBitmap(kickButtonImage, kickButton.getX(), kickButton.getY(), null);
-
+        if(isKickingView==true) canvas.drawBitmap(cancelKickButtonImage, kickButton.getX(), kickButton.getY(), null);
 
         canvas.restore();
     }
@@ -120,8 +133,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
         for (int i = 0; i < gameWorld.getPlatforms().size(); i++) {
 
-            int platformX = gameWorld.getPlatforms().get(i).getX();
-            int platformY = gameWorld.getPlatforms().get(i).getY();
+            int platformX = (int) gameWorld.getPlatforms().get(i).getX();
+            int platformY = (int) gameWorld.getPlatforms().get(i).getY();
             boolean isGrass = gameWorld.getPlatforms().get(i).getIsGrass();
 
             if (isGrass == true)
@@ -135,8 +148,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
         for (int i = 0; i < gameWorld.getBalls().size(); i++) {
 
-            int ballX = gameWorld.getBalls().get(i).getX();
-            int ballY = gameWorld.getBalls().get(i).getY();
+            int ballX = (int) gameWorld.getBalls().get(i).getX();
+            int ballY = (int) gameWorld.getBalls().get(i).getY();
 
             canvas.drawBitmap(ballImage, ballX, ballY, null);
         }
@@ -147,8 +160,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
         for (int i = 0; i < gameWorld.getGoals().size(); i++) {
 
-            int goalX = gameWorld.getGoals().get(i).getX();
-            int goalY = gameWorld.getGoals().get(i).getY();
+            int goalX = (int) gameWorld.getGoals().get(i).getX();
+            int goalY = (int) gameWorld.getGoals().get(i).getY();
 
             canvas.drawBitmap(goalImage, goalX, goalY, null);
 
@@ -201,14 +214,32 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
             rightButton.isClicked(clickedX, clickedY);
             jumpButton.isClicked(clickedX, clickedY);
             if(player.getCanKick()==true) kickButton.isClicked(clickedX, clickedY);
+            isKickingView = kickButton.getIsKicked();
+
+            if(isKickingView==true){
+                kickedX = event.getX();
+                kickedY = event.getY();
+            }
+            else{
+                kickedX = -1;
+                kickedY = -1;
+            }
 
         }
 
 
         if (event.getAction() == MotionEvent.ACTION_UP) {
 
-            player.setVx(0);
+            if(kickedX>0 && kickedY >0){
 
+                kickedX=Math.abs(kickedX-event.getX());
+                kickedY=event.getY()-kickedY;
+
+            }
+
+            player.setVx(0);
+            if(kickedX>50 || kickedY > 50) {kickButton.setIsKickedFalse();player.kick(kickedX,kickedY);}
+            isKickingView = kickButton.getIsKicked();
         }
 
         return true;

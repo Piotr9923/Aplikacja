@@ -2,7 +2,8 @@ package com.example.peew;
 
 public abstract class GameObject {
 
-    protected int x,y,width,height;
+    protected float x,y;
+    protected int width,height;
 
     public GameObject(){
 
@@ -20,12 +21,12 @@ public abstract class GameObject {
 
     }
 
-    public void setX(int x){
+    public void setX(float x){
 
         this.x=x;
     }
 
-    public void setY(int y){
+    public void setY(float y){
 
         this.y=y;
     }
@@ -41,11 +42,11 @@ public abstract class GameObject {
     }
 
 
-    public int getX(){
+    public float getX(){
         return x;
     }
 
-    public int getY(){
+    public float getY(){
         return y;
     }
 

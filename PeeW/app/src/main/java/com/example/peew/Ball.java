@@ -4,6 +4,7 @@ public class Ball extends GameMovingObject {
 
     private int startX, startY;
 
+
     public Ball(int x, int y){
 
         super(x, y);
@@ -24,11 +25,13 @@ public class Ball extends GameMovingObject {
 
     public void update() {
 
-        x = x + vx;
-        y = y + vy;
+            x = x + vx;
+            y = y + vy;
 
         if(canFall==false && vy==0) canFall=true;
     }
+
+
 
 
 }

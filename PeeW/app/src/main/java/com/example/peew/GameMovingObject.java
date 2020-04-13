@@ -4,7 +4,7 @@ public class GameMovingObject extends GameObject {
 
     boolean canFall = true;
 
-    protected int vx, vy;
+    protected float vx, vy;
 
 
     public GameMovingObject() {
@@ -23,22 +23,22 @@ public class GameMovingObject extends GameObject {
         return canFall;
     }
 
-    public void setVx(int vx) {
+    public void setVx(float vx) {
 
         this.vx = vx;
     }
 
-    public int getVx() {
+    public float getVx() {
 
         return vx;
     }
 
-    public int getVy() {
+    public float getVy() {
         return vy;
     }
 
-    public void setVy(int vy) {
-
+    public void setVy(float vy) {
+        this.canFall=false;
         this.vy = vy;
     }
 

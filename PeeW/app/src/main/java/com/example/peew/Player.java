@@ -46,9 +46,10 @@ public class Player extends GameMovingObject {
     }
 
     @Override
-    public void setVy(int vy){
+    public void setVy(float vy){
         if(vy<0 && isStandingOnPlatform==true) {
-            canFall=false; jumpHeight=y+jumpRating*vy;
+            canFall=false;
+            jumpHeight= (int) (y+jumpRating*vy);
         }
 
         this.vy=vy;
@@ -93,9 +94,41 @@ public class Player extends GameMovingObject {
         this.setVy(maxVy);
     }
 
-    public void kick(){
+    public void kick(float kickedX, float kickedY){
 
-        if(this.x<kickedBall.getX()+kickedBall.getWidth()/2) kickedBall.setVx(4);
-        else kickedBall.setVx(-4);
+        float ballVx;
+        float ballVy;
+
+        if(kickedY<25) {ballVy=0;ballVx=6;}
+        else if(kickedX<25){ballVx=0;ballVy=6;}
+        else {
+            float min= kickedX;
+            if (kickedY < kickedX) min = kickedY;
+
+            ballVx = kickedX / min;
+            ballVy = kickedY / min;
+
+            float fasterV=ballVx;
+            if(ballVy>ballVx) fasterV=ballVy;
+
+            if(ballVx<6 && ballVy<6){
+
+                ballVx=ballVx*6/fasterV;
+                ballVy=ballVy*6/fasterV;
+
+            }
+
+        }
+
+
+        if(ballVy>10) ballVy=10;
+        if(ballVx>10) ballVx=10;
+
+
+        if(this.x>kickedBall.getX()+kickedBall.getWidth()/2) ballVx=-ballVx;
+
+        kickedBall.setVx(ballVx);
+        kickedBall.setVy(-ballVy);
+
     }
 }

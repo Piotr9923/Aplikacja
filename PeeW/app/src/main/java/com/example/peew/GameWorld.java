@@ -72,6 +72,7 @@ public class GameWorld {
         if(isLevelWin()==true) levels.loadNextLevel();
 
         checkCanPlayerKick();
+        checkCanPlayerKick();
     }
 
     private void checkCanPlayerKick(){
