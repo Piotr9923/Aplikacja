@@ -9,8 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".WinGameActivity"
-            android:screenOrientation="sensorLandscape"></activity>
+        <activity android:name=".TutorialActivity"></activity>
+        <activity
+            android:name=".WinGameActivity"
+            android:screenOrientation="sensorLandscape" />
         <activity
             android:name=".GameActivity"
             android:screenOrientation="sensorLandscape" />

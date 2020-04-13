@@ -6,5 +6,15 @@
     <string name="win">Wygrałeś</string>
     <string name="play_again">Zagraj ponownie</string>
     <string name="menu">Menu</string>
+    <string name="previous">Poprzedni</string>
+    <string name="close">Zamknij</string>
+    <string name="next">Następny</string>
+
+    <string name="tutorial0">Aby przejść do następnego poziomu musisz strzelić gola. Jeśli na mapie znajduje się więcej niż jedna piłka, każda piłka musi znaleźć się w bramce.</string>
+    <string name="tutorial1">Za pomocą tych przycisków możesz poruszać się postacią.</string>
+    <string name="tutorial2">Po kliknięciu w ten przycisk postać podskoczy. </string>
+    <string name="tutorial3">Jeśli stoisz blisko piłki możesz kliknąć w ten przycisk, aby przejść do okna strzału.</string>
+    <string name="tutorial4">W trybie strzału, aby kopnąć piłkę przeciągnij palcem po ekranie (tak jak pokazuje to żółty pasek). Piłka poleci w przeciwnym kierunku niż przeciągnąłeś palcem po ekranie. </string>
+    <string name="tutorial5">Aby opuścić tryb strzału i przejść do ekranu poruszania się kliknij w ten przycisk.</string>
 
 </resources>

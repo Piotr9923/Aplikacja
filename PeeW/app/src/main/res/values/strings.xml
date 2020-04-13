@@ -6,5 +6,15 @@
     <string name="win">You win !!</string>
     <string name="play_again">Play again</string>
     <string name="menu">Menu</string>
+    <string name="previous">Previous</string>
+    <string name="close">Close</string>
+    <string name="next">Next</string>
 
+
+    <string name="tutorial0">If you want win the level you have to score a goal. If there is more than one ball on the map, each ball must be in the goal.</string>
+    <string name="tutorial1">You can use these buttons to move the hero.</string>
+    <string name="tutorial2">When you click on this button, the hero will jump.</string>
+    <string name="tutorial3">If you are standing close to the ball you can click this button to go to the shot window.</string>
+    <string name="tutorial4">In shot mode, to kick the ball, drag your finger across the screen (as shown by the yellow bar). The ball will fly in the opposite direction than you dragged your finger across the screen.</string>
+    <string name="tutorial5">To exit the shooting mode and move to the moving mode, click this button.</string>
 </resources>
