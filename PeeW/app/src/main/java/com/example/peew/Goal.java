@@ -12,7 +12,7 @@ public class Goal extends GameObject {
 
     }
 
-    public boolean isInGoal(Ball ball){
+    public boolean isBallInGoal(Ball ball){
 
         if(     ball.getX()>=x && ball.getX()+ball.getWidth()<x+width &&
                 ball.getY() >=y && ball.getY() <= y + height

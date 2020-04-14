@@ -22,7 +22,7 @@ public class CollisionDetector {
 
 
         driveTheBall();
-        movingCollision(player);
+        movingCollision(player,-1);
         jumpingCollision(player);
         fallDownWithBallsCollision(player,-1);
         if(player.getStandingOnPlatform()==false) fallDownWithPlatformsCollision(player);
@@ -31,7 +31,7 @@ public class CollisionDetector {
 
             boolean isBallDownCollision=false;
 
-            movingCollision(balls.get(j));
+            movingCollision(balls.get(j),j);
             jumpingCollision(balls.get(j));
 
             isBallDownCollision = fallDownWithBallsCollision(balls.get(j),j);
@@ -58,7 +58,7 @@ public class CollisionDetector {
             else isCollision=false;
 
             if(isCollision==true){balls.get(i).setX(balls.get(i).getX()+player.getVx());balls.get(i).setVx(0);}
-            if(isCollision==true && movingCollision(balls.get(i))==true){balls.get(i).setX(balls.get(i).getX()-player.getVx());player.setX(player.getX()-player.getVx());}
+            if(isCollision==true && movingCollision(balls.get(i),i)==true){balls.get(i).setX(balls.get(i).getX()-player.getVx());player.setX(player.getX()-player.getVx());}
 
         }
 
@@ -133,7 +133,7 @@ public class CollisionDetector {
     }
 
 
-    private boolean movingCollision(GameMovingObject object){
+    private boolean movingCollision(GameMovingObject object, int ballId){
 
         boolean isCollision = false;
         int id=0;
@@ -157,8 +157,9 @@ public class CollisionDetector {
             if (isCollision == true) player.setX(player.getX() + (-1) * player.getVx());
         }else{
             //TODO funkcja nie zatrzymująca piłki
-            if(isCollision == true && platforms.get(id).getY()+platforms.get(id).getHeight() != object.getY()+object.getHeight()){object.setX(object.getX() + (-1) * object.getVx());}
-            else if (isCollision == true) {object.setX(object.getX() + (-1) * object.getVx());object.setVx(0);}
+          //  if(isCollision == true && platforms.get(id).getY()+platforms.get(id).getHeight() != object.getY()+object.getHeight()){object.setX(object.getX() + (-1) * object.getVx());}
+            if(isCollision == true && balls.get(ballId).getIsInGoal() == true ) {object.setX(object.getX() + (-1) * object.getVx());object.setVx(0);object.setVy(6);}
+            else if (isCollision == true) {object.setX(object.getX() + (-1) * object.getVx());object.setVx(-object.getVx());}
         }
 
         return isCollision;
@@ -173,12 +174,12 @@ public class CollisionDetector {
             if (    object.getX() + object.getWidth() > platforms.get(i).getX() &&
                     object.getX()  < platforms.get(i).getX() + platforms.get(i).getWidth() &&
                     object.getY() <= platforms.get(i).getY() + platforms.get(i).getHeight() &&
-                    object.getY() >= platforms.get(i).getY() + platforms.get(i).getHeight() - platforms.get(i).getHeight()
+                    object.getY() >= platforms.get(i).getY()
             ){isCollision=true; break;}
 
         }
 
-        if(isCollision==true && object.getVy()<0) {object.setVy(6);object.setCanFallTrue();}
+        if(isCollision==true && object.getVy()<0) {object.setVy(6);object.setCanFallTrue();object.setVx(-object.getVx());}
 
     }
 

@@ -3,7 +3,7 @@ package com.example.peew;
 public class Ball extends GameMovingObject {
 
     private int startX, startY;
-
+    private boolean isInGoal;
 
     public Ball(int x, int y){
 
@@ -14,6 +14,7 @@ public class Ball extends GameMovingObject {
         this.vy = 0;
         this.startX = x;
         this.startY = y;
+        this.isInGoal = false;
     }
 
     public void setStartingPosition(){
@@ -21,6 +22,15 @@ public class Ball extends GameMovingObject {
         this.x = startX;
         this.y = startY;
 
+    }
+
+    public void setIsInGoal(boolean isInGoal){
+
+        this.isInGoal = isInGoal;
+    }
+
+    public boolean getIsInGoal(){
+        return  isInGoal;
     }
 
     public void update() {

@@ -244,4 +244,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
         return true;
     }
+
+    public void offKickView(){
+        this.kickButton.setIsKickedFalse();
+        isKickingView=false;
+    }
 }

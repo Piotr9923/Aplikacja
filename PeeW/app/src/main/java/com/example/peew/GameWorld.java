@@ -4,15 +4,17 @@ import java.util.ArrayList;
 
 public class GameWorld {
 
-    Player player;
+    private Player player;
 
-    Levels levels;
+    private Levels levels;
 
-    ArrayList<Platform> platforms;
-    ArrayList<Ball> balls;
-    ArrayList<Goal> goals;
+    private ArrayList<Platform> platforms;
+    private ArrayList<Ball> balls;
+    private ArrayList<Goal> goals;
 
-    CollisionDetector collisionDetector;
+    private CollisionDetector collisionDetector;
+
+    private GameView gameView;
 
     public GameWorld(GameActivity gameActivity) {
 
@@ -26,6 +28,12 @@ public class GameWorld {
         levels = new Levels(player, platforms, balls,goals,gameActivity);
         loadNextLevel();
         collisionDetector = new CollisionDetector(player, balls, platforms);
+    }
+
+    public void setGameView(GameView gameView){
+
+        this.gameView = gameView;
+
     }
 
     public Levels getLevels(){
@@ -93,26 +101,27 @@ public class GameWorld {
 
     private boolean isLevelWin(){
 
-        boolean isBallInGoal=false;
-
+        boolean isBallInGoal = false;
+        boolean isLevelWin = true;
         for(int b=0;b<balls.size();b++){
             isBallInGoal=false;
 
             for(int g=0;g<goals.size();g++){
 
-                if(goals.get(g).isInGoal(balls.get(b))==true) isBallInGoal=true;
+                if(goals.get(g).isBallInGoal(balls.get(b))==true) isBallInGoal=true;
 
             }
-
-            if(isBallInGoal==false) return false;
+            balls.get(b).setIsInGoal(isBallInGoal);
+            if(isBallInGoal==false) isLevelWin=false;
 
         }
 
-        return true;
+        return isLevelWin;
     }
 
     private void resetGame() {
 
+        gameView.offKickView();
         player.setStartingPosition();
         for (int i = 0; i < balls.size(); i++) {
             balls.get(i).setStartingPosition();

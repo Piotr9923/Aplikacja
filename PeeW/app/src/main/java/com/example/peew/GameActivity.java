@@ -21,6 +21,7 @@ public class GameActivity extends Activity {
 
         gameWorld = new GameWorld(this);
         gameView = new GameView(this, gameWorld);
+        gameWorld.setGameView(gameView);
 
         setContentView(gameView);
 
