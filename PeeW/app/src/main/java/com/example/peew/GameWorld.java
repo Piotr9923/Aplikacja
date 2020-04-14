@@ -11,6 +11,7 @@ public class GameWorld {
     private ArrayList<Platform> platforms;
     private ArrayList<Ball> balls;
     private ArrayList<Goal> goals;
+    private ArrayList<Obcastle> obcastles;
 
     private CollisionDetector collisionDetector;
 
@@ -24,8 +25,9 @@ public class GameWorld {
         platforms = new ArrayList<Platform>();
         balls = new ArrayList<Ball>();
         goals = new ArrayList<Goal>();
+        obcastles = new ArrayList<Obcastle>();
 
-        levels = new Levels(player, platforms, balls,goals,gameActivity);
+        levels = new Levels(player, platforms, balls,goals,obcastles,gameActivity);
         loadNextLevel();
         collisionDetector = new CollisionDetector(player, balls, platforms);
     }
@@ -57,6 +59,10 @@ public class GameWorld {
         return goals;
     }
 
+    public ArrayList<Obcastle> getObcastles() {
+        return obcastles;
+    }
+
     public Player getPlayer() {
 
         return player;
@@ -71,16 +77,33 @@ public class GameWorld {
 
         collisionDetector.detecteCollision();
 
+      checkResetGame();
+
+        if(isLevelWin()==true) levels.loadNextLevel();
+
+        checkCanPlayerKick();
+        checkCanPlayerKick();
+    }
+
+    private void checkResetGame(){
+
+
         if (player.getY() > 1050) resetGame();
         for (int i = 0; i < balls.size(); i++) {
             if (balls.get(i).getY() > 1050) resetGame();
             if (balls.get(i).getX() > 1800 || balls.get(i).getX() + balls.get(i).getHeight() < 0) resetGame();
         }
 
-        if(isLevelWin()==true) levels.loadNextLevel();
+        for(int o=0;o<obcastles.size();o++){
 
-        checkCanPlayerKick();
-        checkCanPlayerKick();
+            if(obcastles.get(o).isObjectTouching(player) == true) resetGame();
+
+            for (int b= 0; b < balls.size(); b++) {
+                if(obcastles.get(o).isObjectTouching(balls.get(b)) == true) resetGame();
+              }
+
+
+        }
     }
 
     private void checkCanPlayerKick(){

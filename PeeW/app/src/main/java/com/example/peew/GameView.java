@@ -24,6 +24,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     private Bitmap playerImage;
     private Bitmap ballImage;
     private Bitmap goalImage;
+    private Bitmap obcastleImage;
 
     private int screenWidth, screenHeight;
     private float scaleX, scaleY;
@@ -84,6 +85,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         goalImage = BitmapFactory.decodeResource(this.getResources(), R.drawable.goal);
         goalImage = Bitmap.createScaledBitmap(goalImage, 50, 50, true);
 
+        obcastleImage = BitmapFactory.decodeResource(this.getResources(), R.drawable.obcastle);
+        obcastleImage = Bitmap.createScaledBitmap(obcastleImage, 50, 50, true);
+
         platformImage = BitmapFactory.decodeResource(this.getResources(), R.drawable.platform);
         platformImage = Bitmap.createScaledBitmap(platformImage, 50, 50, true);
 
@@ -117,6 +121,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         drawBalls(canvas);
 
         drawGoals(canvas);
+
+        drawObcastles(canvas);
+
 
         if(isKickingView==false){
             canvas.drawBitmap(leftButtonImage, leftButton.getX(), leftButton.getY(), null);
@@ -166,6 +173,19 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
             canvas.drawBitmap(goalImage, goalX, goalY, null);
 
         }
+    }
+
+    private void drawObcastles(Canvas canvas){
+
+        for (int i = 0; i < gameWorld.getObcastles().size(); i++) {
+
+            int obcastleX = (int) gameWorld.getObcastles().get(i).getX();
+            int obcastleY = (int) gameWorld.getObcastles().get(i).getY();
+
+            canvas.drawBitmap(obcastleImage, obcastleX, obcastleY, null);
+
+        }
+
     }
 
     @Override
