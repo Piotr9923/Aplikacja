@@ -24,7 +24,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     private Bitmap playerStandingImage;
     private Bitmap ballImage;
     private Bitmap goalImage;
-    private Bitmap obcastleImage;
+    private Bitmap []obcastleImages;
 
     private int screenWidth, screenHeight;
     private float scaleX, scaleY;
@@ -49,6 +49,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
         kickedX = -1;
         kickedY = -1;
+
+        obcastleImages = new Bitmap[4];
 
         createImages();
         createButtons();
@@ -85,8 +87,17 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         goalImage = BitmapFactory.decodeResource(this.getResources(), R.drawable.goal);
         goalImage = Bitmap.createScaledBitmap(goalImage, 50, 50, true);
 
-        obcastleImage = BitmapFactory.decodeResource(this.getResources(), R.drawable.obcastle);
-        obcastleImage = Bitmap.createScaledBitmap(obcastleImage, 50, 50, true);
+        obcastleImages[0] = BitmapFactory.decodeResource(this.getResources(), R.drawable.obcastle1);
+        obcastleImages[0] = Bitmap.createScaledBitmap(obcastleImages[0], 50, 50, true);
+
+        obcastleImages[1] = BitmapFactory.decodeResource(this.getResources(), R.drawable.obcastle2);
+        obcastleImages[1] = Bitmap.createScaledBitmap(obcastleImages[1], 50, 50, true);
+
+        obcastleImages[2] = BitmapFactory.decodeResource(this.getResources(), R.drawable.obcastle3);
+        obcastleImages[2] = Bitmap.createScaledBitmap(obcastleImages[2], 50, 50, true);
+
+        obcastleImages[3] = BitmapFactory.decodeResource(this.getResources(), R.drawable.obcastle4);
+        obcastleImages[3] = Bitmap.createScaledBitmap(obcastleImages[3], 50, 50, true);
 
         platformImage = BitmapFactory.decodeResource(this.getResources(), R.drawable.platform);
         platformImage = Bitmap.createScaledBitmap(platformImage, 50, 50, true);
@@ -181,8 +192,10 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
             int obcastleX = (int) gameWorld.getObcastles().get(i).getX();
             int obcastleY = (int) gameWorld.getObcastles().get(i).getY();
+            int type = gameWorld.getObcastles().get(i).getType();
 
-            canvas.drawBitmap(obcastleImage, obcastleX, obcastleY, null);
+System.out.println("type="+type);
+            canvas.drawBitmap(obcastleImages[type-1], obcastleX, obcastleY, null);
 
         }
 
