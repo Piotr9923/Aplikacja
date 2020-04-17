@@ -2,13 +2,21 @@ package com.example.peew;
 
 public class Obcastle extends GameObject {
 
-    public Obcastle(int x, int y){
+    private int type;
+
+    public Obcastle(int x, int y, int type){
 
         super(x,y);
 
         this.setWidth(50);
         this.setHeight(50);
 
+        this.type=type;
+
+    }
+
+    public int getType(){
+        return type;
     }
 
     public boolean isObjectTouching(GameObject gameObject){
