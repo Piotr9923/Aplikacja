@@ -194,7 +194,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
             int obcastleY = (int) gameWorld.getObcastles().get(i).getY();
             int type = gameWorld.getObcastles().get(i).getType();
 
-System.out.println("type="+type);
             canvas.drawBitmap(obcastleImages[type-1], obcastleX, obcastleY, null);
 
         }

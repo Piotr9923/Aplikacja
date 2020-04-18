@@ -21,12 +21,10 @@ public class Obcastle extends GameObject {
 
     public boolean isObjectTouching(GameObject gameObject){
 
-        if( gameObject.getX()+gameObject.getWidth()>=x && gameObject.getX() <= x+width &&
-            gameObject.getY() + gameObject.getHeight() > y &&
-            gameObject.getY() + gameObject.getHeight() <= y+height
-
+        if( gameObject.getX() <= x+width && gameObject.getX()  + gameObject.getWidth() >= x &&
+            gameObject.getY() < y + height &&
+            gameObject.getY() + gameObject.getHeight() >= y
         ) return true;
-
 
         return false;
     }

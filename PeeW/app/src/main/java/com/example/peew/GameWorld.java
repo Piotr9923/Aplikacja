@@ -20,8 +20,8 @@ public class GameWorld {
     public GameWorld(GameActivity gameActivity) {
 
         player = new Player();
-        player.setWidth(25);
-        player.setHeight(65);
+        player.setWidth(40);
+        player.setHeight(90);
         platforms = new ArrayList<Platform>();
         balls = new ArrayList<Ball>();
         goals = new ArrayList<Goal>();
