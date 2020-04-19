@@ -111,8 +111,8 @@ public class GameWorld {
         boolean isBallNear=false;
         for(int i=0;i<balls.size();i++){
 
-            if(     player.getX()+player.getWidth()+10>=balls.get(i).getX() &&
-                    player.getX()-10<=balls.get(i).getX()+balls.get(i).getWidth() &&
+            if(     player.getX()+player.getWidth()+20>=balls.get(i).getX() &&
+                    player.getX()-20<=balls.get(i).getX()+balls.get(i).getWidth() &&
                     player.getStandingOnPlatform()==true &&
                     player.getY()+player.getHeight() == balls.get(i).getY()+balls.get(i).getHeight()
             ) {isBallNear=true;player.setKickedBall(balls.get(i));break;}

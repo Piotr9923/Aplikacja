@@ -25,7 +25,7 @@ public class CollisionDetector {
         movingCollision(player,-1);
         jumpingCollision(player);
         fallDownWithBallsCollision(player,-1);
-        if(player.getStandingOnPlatform()==false) fallDownWithPlatformsCollision(player);
+        if(player.getStandingOnPlatform()==false) fallDownWithPlatformsCollision(player,-1);
 
         for(int j=0;j<balls.size();j++){
 
@@ -36,7 +36,7 @@ public class CollisionDetector {
 
             isBallDownCollision = fallDownWithBallsCollision(balls.get(j),j);
             if(isBallDownCollision==false) isBallDownCollision= fallDownWithPlayerCollision(balls.get(j));
-            if(isBallDownCollision==false) fallDownWithPlatformsCollision(balls.get(j));
+            if(isBallDownCollision==false) fallDownWithPlatformsCollision(balls.get(j),j);
         }
 
     }
@@ -57,14 +57,15 @@ public class CollisionDetector {
             ) {isCollision=true;}
             else isCollision=false;
 
-            if(isCollision==true){balls.get(i).setX(balls.get(i).getX()+player.getVx());balls.get(i).setVx(0);}
+            if(isCollision==true && player.getVx()==0) balls.get(i).setX(balls.get(i).getX()-balls.get(i).getVx());
+            if(isCollision==true){balls.get(i).setX(balls.get(i).getX()+player.getVx());balls.get(i).setVx(0);balls.get(i).setVy(0);}
             if(isCollision==true && movingCollision(balls.get(i),i)==true){balls.get(i).setX(balls.get(i).getX()-player.getVx());player.setX(player.getX()-player.getVx());}
 
         }
 
     }
 
-    private void fallDownWithPlatformsCollision(GameMovingObject object){
+    private void fallDownWithPlatformsCollision(GameMovingObject object, int ballId){
 
         boolean isCollision = false;
         int platformId=0;
@@ -84,7 +85,8 @@ public class CollisionDetector {
         }
         else {
             if (isCollision == false && object.canFall() == true) {object.setVy(6);}
-            else if (isCollision == true) { object.setVy(0);object.setY(platforms.get(platformId).getY() - object.getHeight()); }
+            else if (isCollision == true&&balls.get(ballId).isPassKick()==true) { object.setVy(0);object.setY(platforms.get(platformId).getY() - object.getHeight()); }
+            else if (isCollision == true) { object.setVy(0);object.setVx(0);object.setY(platforms.get(platformId).getY() - object.getHeight()); }
         }
    }
 
@@ -160,12 +162,13 @@ public class CollisionDetector {
           //  if(isCollision == true && platforms.get(id).getY()+platforms.get(id).getHeight() != object.getY()+object.getHeight()){object.setX(object.getX() + (-1) * object.getVx());}
             if(isCollision == true && balls.get(ballId).getIsInGoal() == true ) {object.setX(object.getX() + (-1) * object.getVx());object.setVx(0);object.setVy(6);}
             else if (isCollision == true) {object.setX(object.getX() + (-1) * object.getVx());object.setVx(-object.getVx());}
+
         }
 
         return isCollision;
     }
 
-    private void jumpingCollision(GameMovingObject object){
+    private void jumpingCollision(GameMovingObject object ){
 
         boolean isCollision = false;
 
@@ -179,8 +182,8 @@ public class CollisionDetector {
 
         }
 
-        if(isCollision==true && object.getVy()<0) {object.setVy(6);object.setCanFallTrue();}
         if(isCollision==true && object.getVy()<0) {object.setVx(-object.getVx());}
+        if(isCollision==true && object.getVy()<0) {object.setVy(6);object.setCanFallTrue();}
 
     }
 

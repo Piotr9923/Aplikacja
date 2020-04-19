@@ -4,6 +4,9 @@ public class Ball extends GameMovingObject {
 
     private int startX, startY;
     private boolean isInGoal;
+    private float range;
+    private boolean isKicked;
+    private boolean passKick;
 
     public Ball(int x, int y){
 
@@ -15,6 +18,8 @@ public class Ball extends GameMovingObject {
         this.startX = x;
         this.startY = y;
         this.isInGoal = false;
+        this.isKicked = false;
+        passKick = false;
     }
 
     public void setStartingPosition(){
@@ -24,8 +29,18 @@ public class Ball extends GameMovingObject {
 
     }
 
-    public void setIsInGoal(boolean isInGoal){
+    public void kick(float distance,boolean passKick){
 
+        this.range = distance;
+        this.isKicked = true;
+        this.passKick=passKick;
+    }
+
+    public boolean isPassKick(){
+        return passKick;
+    }
+
+    public void setIsInGoal(boolean isInGoal){
         this.isInGoal = isInGoal;
     }
 
@@ -33,14 +48,27 @@ public class Ball extends GameMovingObject {
         return  isInGoal;
     }
 
-    public void update() {
-
-            x = x + vx;
-            y = y + vy;
-
-        if(canFall==false && vy==0) canFall=true;
+    public void setIsKickedFalse(){
+        this.isKicked=false;
     }
 
+    public void update() {
+
+          if(isKicked==true)  {range = range - Math.abs(vx);}
+          if(range<0 && isKicked==true) {vy=-vy;isKicked=false;}
+          x = x + vx;
+          y = y + vy;
+
+          if(canFall==false && vy==0) {canFall=true;isKicked=false;}
+    }
+
+
+    @Override
+    public void setVy(float vy) {
+        isKicked=false;
+
+        super.setVy(vy);
+    }
 
 
 

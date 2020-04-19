@@ -15,7 +15,7 @@
     <string name="tutorial2">Za pomocą tych przycisków możesz poruszać się postacią.</string>
     <string name="tutorial3">Po kliknięciu w ten przycisk postać podskoczy. </string>
     <string name="tutorial4">Jeśli stoisz blisko piłki możesz kliknąć w ten przycisk, aby przejść do okna strzału.</string>
-    <string name="tutorial5">W trybie strzału, aby kopnąć piłkę przeciągnij palcem po ekranie (tak jak pokazuje to żółty pasek). Piłka poleci w przeciwnym kierunku niż przeciągnąłeś palcem po ekranie. </string>
+    <string name="tutorial5">W trybie strzału, aby kopnąć piłkę przeciągnij palcem po ekranie (tak jak pokazuje to żółty pasek). Piłka poleci w przeciwnym kierunku niż przeciągnąłeś palcem po ekranie. Siła strzału zależy od długości pociągnięcia palcem po ekranie. </string>
     <string name="tutorial6">Aby opuścić tryb strzału i przejść do ekranu poruszania się kliknij w ten przycisk.</string>
 
 </resources>
