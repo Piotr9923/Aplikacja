@@ -109,7 +109,6 @@ public class TutorialActivity extends Activity {
         if(imageId==tutorialImages.length-1) nextButton.setVisibility(View.INVISIBLE);
         else nextButton.setVisibility(View.VISIBLE);
 
-
     }
 
 }

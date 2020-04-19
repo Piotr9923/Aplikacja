@@ -127,8 +127,16 @@ public class Player extends GameMovingObject {
 
         if(this.x>kickedBall.getX()+kickedBall.getWidth()/2) ballVx=-ballVx;
 
+        boolean passKick=false;
+        if(ballVy==0) passKick=true;
+
         kickedBall.setVx(ballVx);
         kickedBall.setVy(-ballVy);
+
+        float distance = kickedX*kickedX + kickedY*kickedY;
+        distance= (float) Math.sqrt(distance);
+
+        kickedBall.kick(distance,passKick);
 
     }
 }

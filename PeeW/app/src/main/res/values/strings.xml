@@ -16,6 +16,6 @@
     <string name="tutorial2">You can use these buttons to move the hero.</string>
     <string name="tutorial3">When you click on this button, the hero will jump.</string>
     <string name="tutorial4">If you are standing close to the ball you can click this button to go to the shot window.</string>
-    <string name="tutorial5">In shot mode, to kick the ball, drag your finger across the screen (as shown by the yellow bar). The ball will fly in the opposite direction than you dragged your finger across the screen.</string>
+    <string name="tutorial5">In shot mode, to kick the ball, drag your finger across the screen (as shown by the yellow bar). The ball will fly in the opposite direction than you dragged your finger across the screen. The strength of the shot depends on the length of the finger move on the screen.</string>
     <string name="tutorial6">To exit the shooting mode and move to the moving mode, click this button.</string>
 </resources>
