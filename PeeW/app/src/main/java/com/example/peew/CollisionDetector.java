@@ -91,7 +91,7 @@ public class CollisionDetector {
     private boolean fallDownWithBallsCollision(GameMovingObject object, int id){
 
         boolean isCollision = false;
-        int platformId=0;
+        int ballId=0;
         for(int i=0;i<balls.size();i++){
 
 
@@ -100,16 +100,16 @@ public class CollisionDetector {
                     object.getX()<balls.get(i).getX()+balls.get(i).getWidth() &&
                     object.getY()+object.getHeight()>=balls.get(i).getY() &&
                     object.getY()+object.getHeight()<=balls.get(i).getY()+15)==true
-            ) {isCollision = true;platformId=i;break;}
+            ) {isCollision = true;ballId=i;break;}
         }
 
         if(object==player) {
             if(isCollision==false && player.canFall()==true) {player.setVy(6);player.setStandingOnPlatform(false);}
-            else if(isCollision==true) {;player.setVy(0);player.setStandingOnPlatform(true);player.setY(balls.get(platformId).getY()-player.getHeight());}
+            else if(isCollision==true) {;player.setVy(0);player.setStandingOnPlatform(true);player.setY(balls.get(ballId).getY()-player.getHeight());balls.get(ballId).setVy(6);}
         }
         else {
             if (isCollision == false && object.canFall() == true) {object.setVy(6);}
-            else if (isCollision == true) { object.setVy(0);object.setY(balls.get(platformId).getY() - object.getHeight()); }
+            else if (isCollision == true) { object.setVy(0);object.setY(balls.get(ballId).getY() - object.getHeight()); }
         }
         return isCollision;
     }

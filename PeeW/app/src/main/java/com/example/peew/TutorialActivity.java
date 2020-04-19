@@ -32,12 +32,12 @@ public class TutorialActivity extends Activity {
         imageId = 0;
 
         image = (ImageView) findViewById(R.id.tutorialImage);
-        tutorialImages = new Bitmap[6];
+        tutorialImages = new Bitmap[7];
         loadImages();
 
         describe = (TextView) findViewById(R.id.describe);
 
-        strings = new int[6];
+        strings = new int[7];
         loadDescribes();
 
         closeButton = (Button) findViewById(R.id.close);
@@ -81,6 +81,7 @@ public class TutorialActivity extends Activity {
         tutorialImages[3] = BitmapFactory.decodeResource(this.getResources(),R.drawable.tutorial3);
         tutorialImages[4] = BitmapFactory.decodeResource(this.getResources(),R.drawable.tutorial4);
         tutorialImages[5] = BitmapFactory.decodeResource(this.getResources(),R.drawable.tutorial5);
+        tutorialImages[6] = BitmapFactory.decodeResource(this.getResources(),R.drawable.tutorial6);
 
     }
 
@@ -92,7 +93,7 @@ public class TutorialActivity extends Activity {
         strings[3]=R.string.tutorial3;
         strings[4]=R.string.tutorial4;
         strings[5]=R.string.tutorial5;
-
+        strings[6]=R.string.tutorial6;
 
     }
 
@@ -104,9 +105,8 @@ public class TutorialActivity extends Activity {
         describe.setText(strings[imageId]);
 
         if(imageId==0) previousButton.setVisibility(View.INVISIBLE);
-        else previousButton.setVisibility(View.VISIBLE
-        );
-        if(imageId==5) nextButton.setVisibility(View.INVISIBLE);
+        else previousButton.setVisibility(View.VISIBLE);
+        if(imageId==tutorialImages.length-1) nextButton.setVisibility(View.INVISIBLE);
         else nextButton.setVisibility(View.VISIBLE);
 
 

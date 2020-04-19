@@ -26,6 +26,11 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     private Bitmap goalImage;
     private Bitmap []obcastleImages;
 
+    private Bitmap[] playerLeftMoving;
+    private Bitmap[] playerRightMoving;
+
+    private int playerImageId=0;
+
     private int screenWidth, screenHeight;
     private float scaleX, scaleY;
 
@@ -51,6 +56,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         kickedY = -1;
 
         obcastleImages = new Bitmap[4];
+        playerLeftMoving = new Bitmap[3];
+        playerRightMoving = new Bitmap[3];
 
         createImages();
         createButtons();
@@ -78,8 +85,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         cancelKickButtonImage= BitmapFactory.decodeResource(this.getResources(), R.drawable.cancelkickbutton);
         cancelKickButtonImage = Bitmap.createScaledBitmap(cancelKickButtonImage, 170, 170, true);
 
-        playerStandingImage = BitmapFactory.decodeResource(this.getResources(), R.drawable.player);
-        playerStandingImage = Bitmap.createScaledBitmap(playerStandingImage, player.getWidth(), player.getHeight(), true);
+       createPlayerImages();
 
         ballImage = BitmapFactory.decodeResource(this.getResources(), R.drawable.ball);
         ballImage = Bitmap.createScaledBitmap(ballImage, 25, 25, true);
@@ -107,6 +113,31 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     }
 
+    private void createPlayerImages(){
+
+        playerStandingImage = BitmapFactory.decodeResource(this.getResources(), R.drawable.player);
+        playerStandingImage = Bitmap.createScaledBitmap(playerStandingImage, player.getWidth(), player.getHeight(), true);
+
+        playerRightMoving[0] = BitmapFactory.decodeResource(this.getResources(), R.drawable.playerrigth1);
+        playerRightMoving[0] = Bitmap.createScaledBitmap(playerRightMoving[0], player.getWidth(), player.getHeight(), true);
+
+        playerRightMoving[1] = BitmapFactory.decodeResource(this.getResources(), R.drawable.playerright2);
+        playerRightMoving[1] = Bitmap.createScaledBitmap(playerRightMoving[1], player.getWidth(), player.getHeight(), true);
+
+        playerRightMoving[2] = BitmapFactory.decodeResource(this.getResources(), R.drawable.playerrigth3);
+        playerRightMoving[2] = Bitmap.createScaledBitmap(playerRightMoving[2], player.getWidth(), player.getHeight(), true);
+
+        playerLeftMoving[0] = BitmapFactory.decodeResource(this.getResources(), R.drawable.playerleft1);
+        playerLeftMoving[0] = Bitmap.createScaledBitmap(playerLeftMoving[0], player.getWidth(), player.getHeight(), true);
+
+        playerLeftMoving[1] = BitmapFactory.decodeResource(this.getResources(), R.drawable.playerleft2);
+        playerLeftMoving[1] = Bitmap.createScaledBitmap(playerLeftMoving[1], player.getWidth(), player.getHeight(), true);
+
+        playerLeftMoving[2] = BitmapFactory.decodeResource(this.getResources(), R.drawable.playerleft3);
+        playerLeftMoving[2] = Bitmap.createScaledBitmap(playerLeftMoving[2], player.getWidth(), player.getHeight(), true);
+
+    }
+
     private void createButtons() {
 
         leftButton = new MovingButton(90, 800, leftButtonImage.getWidth(), leftButtonImage.getHeight(), player, true, scaleX, scaleY);
@@ -125,7 +156,10 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
         canvas.drawColor(Color.BLUE);
 
-        canvas.drawBitmap(playerStandingImage, player.getX(), player.getY(), null);
+        if(player.getVx()==0) canvas.drawBitmap(playerStandingImage, player.getX(), player.getY(), null);
+        else if (player.getVx()>0) {canvas.drawBitmap(playerRightMoving[playerImageId], player.getX(), player.getY(), null);playerImageId++;playerImageId=playerImageId%3;}
+        else {canvas.drawBitmap(playerLeftMoving[playerImageId], player.getX(), player.getY(), null);playerImageId++;playerImageId=playerImageId%3;}
+
 
         drawPlatformsImages(canvas);
 
