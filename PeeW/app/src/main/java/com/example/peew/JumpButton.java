@@ -18,7 +18,8 @@ public class JumpButton extends MyButton {
 
         if(player.getStandingOnPlatform() == true) {
 
-            player.jump();player.setStandingOnPlatform(false);
+            player.jump();
+            player.setStandingOnPlatform(false);
 
         }
 
