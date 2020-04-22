@@ -15,7 +15,6 @@ public class CollisionDetector {
         this.player = player;
         this.balls = balls;
 
-
     }
 
     public void detecteCollision(){

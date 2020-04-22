@@ -20,8 +20,8 @@ public class GameWorld {
     public GameWorld(GameActivity gameActivity) {
 
         player = new Player();
-        player.setWidth(40);
-        player.setHeight(90);
+        player.setWidth(35);
+        player.setHeight(85);
         platforms = new ArrayList<Platform>();
         balls = new ArrayList<Ball>();
         goals = new ArrayList<Goal>();
@@ -142,7 +142,7 @@ public class GameWorld {
         return isLevelWin;
     }
 
-    private void resetGame() {
+    public void resetGame() {
 
         gameView.offKickView();
         player.setStartingPosition();

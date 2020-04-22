@@ -18,9 +18,10 @@ import java.util.Locale;
 
 public class MenuActivity extends Activity {
 
-    Button startGameButton, exitGameButton, howToPlay;
-    ImageView language;
-    Bitmap pl,en;
+    private Button startGameButton, exitGameButton, howToPlay;
+    private ImageView language;
+    private Bitmap pl,en;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

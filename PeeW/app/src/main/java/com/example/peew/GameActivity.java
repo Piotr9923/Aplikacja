@@ -11,6 +11,7 @@ public class GameActivity extends Activity {
 
     private GameView gameView;
     private GameWorld gameWorld;
+    private SoundPlayer soundPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +26,14 @@ public class GameActivity extends Activity {
 
         setContentView(gameView);
 
+        soundPlayer = new SoundPlayer(this.getApplicationContext());
+        soundPlayer.playBackgroundMusic();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
 
+        soundPlayer.stopBackgroundMusic();
+    }
 }

@@ -19,8 +19,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     private MovingButton leftButton, rightButton;
     private JumpButton jumpButton;
     private KickButton kickButton;
+    private ResetLevelButton resetLevelButton;
 
-    private Bitmap leftButtonImage, rightButtonImage, jumpButtonImage, kickButtonImage, cancelKickButtonImage;
+    private Bitmap leftButtonImage, rightButtonImage, jumpButtonImage, kickButtonImage, cancelKickButtonImage, resetLevelButtonImage;
     private Bitmap playerStandingImage;
     private Bitmap ballImage;
     private Bitmap goalImage;
@@ -82,8 +83,12 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         kickButtonImage = BitmapFactory.decodeResource(this.getResources(), R.drawable.kickbutton);
         kickButtonImage = Bitmap.createScaledBitmap(kickButtonImage, 170, 170, true);
 
-        cancelKickButtonImage= BitmapFactory.decodeResource(this.getResources(), R.drawable.cancelkickbutton);
+        cancelKickButtonImage = BitmapFactory.decodeResource(this.getResources(), R.drawable.cancelkickbutton);
         cancelKickButtonImage = Bitmap.createScaledBitmap(cancelKickButtonImage, 170, 170, true);
+
+        resetLevelButtonImage = BitmapFactory.decodeResource(this.getResources(), R.drawable.resetbutton);
+        resetLevelButtonImage = Bitmap.createScaledBitmap(resetLevelButtonImage, 100, 100, true);
+
 
        createPlayerImages();
 
@@ -144,6 +149,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         rightButton = new MovingButton(350, 800, rightButtonImage.getWidth(), rightButtonImage.getHeight(), player, false, scaleX, scaleY);
         jumpButton = new JumpButton(1500, 800, jumpButtonImage.getWidth(), jumpButtonImage.getHeight(), player, scaleX, scaleY);
         kickButton = new KickButton(1250, 800, kickButtonImage.getWidth(), kickButtonImage.getHeight(), gameWorld, scaleX, scaleY);
+        resetLevelButton = new ResetLevelButton(1670, 20, resetLevelButtonImage.getWidth(), resetLevelButtonImage.getHeight(), gameWorld, scaleX, scaleY);
 
     }
 
@@ -174,6 +180,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
             canvas.drawBitmap(leftButtonImage, leftButton.getX(), leftButton.getY(), null);
             canvas.drawBitmap(rightButtonImage, rightButton.getX(), rightButton.getY(), null);
             canvas.drawBitmap(jumpButtonImage, jumpButton.getX(), jumpButton.getY(), null);
+            canvas.drawBitmap(resetLevelButtonImage, resetLevelButton.getX(), resetLevelButton.getY(), null);
+
         }
        if(player.getCanKick()==true) canvas.drawBitmap(kickButtonImage, kickButton.getX(), kickButton.getY(), null);
         if(isKickingView==true) canvas.drawBitmap(cancelKickButtonImage, kickButton.getX(), kickButton.getY(), null);
@@ -270,6 +278,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
                 leftButton.isClicked(clickedX1, clickedY1);
                 rightButton.isClicked(clickedX1, clickedY1);
                 jumpButton.isClicked(clickedX1, clickedY1);
+                resetLevelButton.isClicked(clickedX1, clickedY1);
+
             }
             if(player.getCanKick()==true) kickButton.isClicked(clickedX, clickedY);
 
@@ -281,6 +291,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
                 leftButton.isClicked(clickedX, clickedY);
                 rightButton.isClicked(clickedX, clickedY);
                 jumpButton.isClicked(clickedX, clickedY);
+                resetLevelButton.isClicked(clickedX, clickedY);
+
             }
             if(player.getCanKick()==true) kickButton.isClicked(clickedX, clickedY);
             isKickingView = kickButton.getIsKicked();
