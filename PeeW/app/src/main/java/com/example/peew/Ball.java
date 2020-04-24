@@ -45,6 +45,7 @@ public class Ball extends GameMovingObject {
     }
 
     public boolean getIsInGoal(){
+
         return  isInGoal;
     }
 
@@ -54,22 +55,32 @@ public class Ball extends GameMovingObject {
 
     public void update() {
 
-          if(isKicked==true)  {range = range - Math.abs(vx);}
-          if(range<0 && isKicked==true) {vy=-vy;isKicked=false;}
+        if(passKick==true){
+
+            range = range - Math.abs(vx);
+
+            if (range < 0) {
+                vx = 0;
+                isKicked = false;
+            }
+
+        }
+        else if(isKicked==true) {
+              range = range - Math.abs(vx);
+              if(vx==0) range = range - Math.abs(vy);
+              System.out.println(range);
+              if (range < 0) {
+                  vy = -vy;
+                  isKicked = false;
+              }
+          }
+
+
           x = x + vx;
           y = y + vy;
 
           if(canFall==false && vy==0) {canFall=true;isKicked=false;}
     }
-
-
-    @Override
-    public void setVy(float vy) {
-        isKicked=false;
-
-        super.setVy(vy);
-    }
-
 
 
 }

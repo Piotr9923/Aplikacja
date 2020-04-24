@@ -20,14 +20,16 @@ public class GameActivity extends Activity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        gameWorld = new GameWorld(this);
+        soundPlayer = new SoundPlayer(this.getApplicationContext());
+        soundPlayer.playBackgroundMusic();
+
+        gameWorld = new GameWorld(this, soundPlayer);
         gameView = new GameView(this, gameWorld);
         gameWorld.setGameView(gameView);
 
         setContentView(gameView);
 
-        soundPlayer = new SoundPlayer(this.getApplicationContext());
-        soundPlayer.playBackgroundMusic();
+
     }
 
     @Override

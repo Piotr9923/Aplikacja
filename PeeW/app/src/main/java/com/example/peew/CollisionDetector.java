@@ -7,13 +7,15 @@ public class CollisionDetector {
     private Player player;
     private ArrayList<Ball> balls;
     private ArrayList<Platform> platforms;
+    private SoundPlayer soundPlayer;
 
-    public CollisionDetector(Player player, ArrayList<Ball> balls, ArrayList<Platform> platforms){
+    public CollisionDetector(Player player, ArrayList<Ball> balls, ArrayList<Platform> platforms, SoundPlayer soundPlayer){
 
 
         this.platforms = platforms;
         this.player = player;
         this.balls = balls;
+        this.soundPlayer = soundPlayer;
 
     }
 
@@ -162,6 +164,7 @@ public class CollisionDetector {
             if(isCollision == true && balls.get(ballId).getIsInGoal() == true ) {object.setX(object.getX() + (-1) * object.getVx());object.setVx(0);object.setVy(6);}
             else if (isCollision == true) {object.setX(object.getX() + (-1) * object.getVx());object.setVx(-object.getVx());}
 
+            if(isCollision==true) soundPlayer.playCollisionMusic();
         }
 
         return isCollision;

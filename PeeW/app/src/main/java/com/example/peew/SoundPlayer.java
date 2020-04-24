@@ -2,6 +2,7 @@ package com.example.peew;
 
 import android.content.Context;
 import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.provider.MediaStore;
 
 public class SoundPlayer {
@@ -11,10 +12,11 @@ public class SoundPlayer {
 
     public SoundPlayer(Context contex){
 
-        backgroundMusic = MediaPlayer.create(contex,R.raw.background);
-        backgroundMusic.setLooping(true);
-
         collisionMusic = MediaPlayer.create(contex,R.raw.ball);
+        backgroundMusic = MediaPlayer.create(contex, R.raw.background);
+
+        backgroundMusic.setLooping(true);
+        backgroundMusic.start();
     }
 
     public void playBackgroundMusic(){
@@ -29,6 +31,7 @@ public class SoundPlayer {
     }
 
     public void playCollisionMusic(){
+
         collisionMusic.start();
     }
 

@@ -17,7 +17,7 @@ public class GameWorld {
 
     private GameView gameView;
 
-    public GameWorld(GameActivity gameActivity) {
+    public GameWorld(GameActivity gameActivity, SoundPlayer soundPlayer) {
 
         player = new Player();
         player.setWidth(35);
@@ -29,7 +29,7 @@ public class GameWorld {
 
         levels = new Levels(player, platforms, balls,goals,obcastles,gameActivity);
         loadNextLevel();
-        collisionDetector = new CollisionDetector(player, balls, platforms);
+        collisionDetector = new CollisionDetector(player, balls, platforms, soundPlayer);
     }
 
     public void setGameView(GameView gameView){
