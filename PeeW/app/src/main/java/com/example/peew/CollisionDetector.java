@@ -88,6 +88,7 @@ public class CollisionDetector {
             if (isCollision == false && object.canFall() == true) {object.setVy(6);}
             else if (isCollision == true&&balls.get(ballId).isPassKick()==true) { object.setVy(0);object.setY(platforms.get(platformId).getY() - object.getHeight()); }
             else if (isCollision == true) { object.setVy(0);object.setVx(0);object.setY(platforms.get(platformId).getY() - object.getHeight()); }
+
         }
    }
 
@@ -159,8 +160,6 @@ public class CollisionDetector {
         if(object==player) {
             if (isCollision == true) player.setX(player.getX() + (-1) * player.getVx());
         }else{
-            //TODO funkcja nie zatrzymująca piłki
-          //  if(isCollision == true && platforms.get(id).getY()+platforms.get(id).getHeight() != object.getY()+object.getHeight()){object.setX(object.getX() + (-1) * object.getVx());}
             if(isCollision == true && balls.get(ballId).getIsInGoal() == true ) {object.setX(object.getX() + (-1) * object.getVx());object.setVx(0);object.setVy(6);}
             else if (isCollision == true) {object.setX(object.getX() + (-1) * object.getVx());object.setVx(-object.getVx());}
 

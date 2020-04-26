@@ -2,7 +2,7 @@ package com.example.peew;
 
 public class GameMovingObject extends GameObject {
 
-    boolean canFall = true;
+    protected boolean canFall = true;
 
     protected float vx, vy;
 

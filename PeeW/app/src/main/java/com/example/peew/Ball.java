@@ -68,7 +68,7 @@ public class Ball extends GameMovingObject {
         else if(isKicked==true) {
               range = range - Math.abs(vx);
               if(vx==0) range = range - Math.abs(vy);
-              System.out.println(range);
+
               if (range < 0) {
                   vy = -vy;
                   isKicked = false;
@@ -82,5 +82,10 @@ public class Ball extends GameMovingObject {
           if(canFall==false && vy==0) {canFall=true;isKicked=false;}
     }
 
+    @Override
+    public void setVy(float vy) {
+        super.setVy(vy);
 
+
+    }
 }
