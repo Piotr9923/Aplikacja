@@ -74,6 +74,9 @@ public class GameWorld {
         for (int i = 0; i < balls.size(); i++) {
             balls.get(i).update();
         }
+        for (int i=0;i<obcastles.size();i++){
+            obcastles.get(i).update();
+        }
 
         collisionDetector.detecteCollision();
 

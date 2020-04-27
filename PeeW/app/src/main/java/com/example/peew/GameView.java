@@ -167,13 +167,14 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         else {canvas.drawBitmap(playerLeftMoving[playerImageId], player.getX(), player.getY(), null);playerImageId++;playerImageId=playerImageId%3;}
 
 
-        drawPlatformsImages(canvas);
 
         drawBalls(canvas);
 
         drawGoals(canvas);
 
         drawObcastles(canvas);
+
+        drawPlatformsImages(canvas);
 
 
         if(isKickingView==false){

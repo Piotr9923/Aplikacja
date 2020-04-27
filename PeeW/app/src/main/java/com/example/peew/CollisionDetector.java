@@ -11,7 +11,6 @@ public class CollisionDetector {
 
     public CollisionDetector(Player player, ArrayList<Ball> balls, ArrayList<Platform> platforms, SoundPlayer soundPlayer){
 
-
         this.platforms = platforms;
         this.player = player;
         this.balls = balls;

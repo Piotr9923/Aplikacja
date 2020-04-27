@@ -49,10 +49,6 @@ public class Ball extends GameMovingObject {
         return  isInGoal;
     }
 
-    public void setIsKickedFalse(){
-        this.isKicked=false;
-    }
-
     public void update() {
 
         if(passKick==true){
@@ -70,7 +66,7 @@ public class Ball extends GameMovingObject {
               if(vx==0) range = range - Math.abs(vy);
 
               if (range < 0) {
-                  vy = -vy;
+                  if(vy<0) vy = -vy;
                   isKicked = false;
               }
           }

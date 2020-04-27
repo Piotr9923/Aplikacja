@@ -14,7 +14,8 @@ public class ResetLevelButton extends MyButton {
 
     @Override
     protected void action() {
-        System.out.println("xxx");
+
         gameWorld.resetGame();
+
     }
 }
