@@ -57,8 +57,8 @@ public class CollisionDetector {
             ) {isCollision=true;}
             else isCollision=false;
 
-            if(isCollision==true && player.getVx()==0) balls.get(i).setX(balls.get(i).getX()-balls.get(i).getVx());
-            if(isCollision==true){balls.get(i).setX(balls.get(i).getX()+player.getVx());balls.get(i).setVx(0);balls.get(i).setVy(0);}
+            if(isCollision==true && (player.getVx()==0 || player.getVx()*balls.get(i).getVx()>0)){ balls.get(i).setX(balls.get(i).getX()-balls.get(i).getVx());balls.get(i).setVx(0);balls.get(i).setVy(0);}
+            else if(isCollision==true){balls.get(i).setX(balls.get(i).getX()+player.getVx());balls.get(i).setVx(0);balls.get(i).setVy(0);}
             if(isCollision==true && movingCollision(balls.get(i),i)==true){balls.get(i).setX(balls.get(i).getX()-player.getVx());player.setX(player.getX()-player.getVx());}
 
         }

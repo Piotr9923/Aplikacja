@@ -12,6 +12,7 @@ public class GameActivity extends Activity {
     private GameView gameView;
     private GameWorld gameWorld;
     private SoundPlayer soundPlayer;
+    private GameThread gameThread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,11 @@ public class GameActivity extends Activity {
         gameWorld.setGameView(gameView);
 
         setContentView(gameView);
+
+        this.gameThread = new GameThread(gameView, gameWorld, gameView.getHolder());
+        this.gameThread.setRunning(true);
+        this.gameThread.start();
+
 
 
     }

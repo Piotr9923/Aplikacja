@@ -14,7 +14,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     private GameWorld gameWorld;
     private Player player;
-    private GameThread gameThread;
 
     private MovingButton leftButton, rightButton;
     private JumpButton jumpButton;
@@ -39,6 +38,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     private boolean isKickingView;
     private float kickedX,kickedY;
+
+    private SurfaceHolder holder;
 
     public GameView(Context context, GameWorld gameWorld) {
         super(context);
@@ -67,6 +68,10 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
         this.getHolder().addCallback(this);
 
+    }
+
+    public SurfaceHolder getSurfaceHolder(){
+        return holder;
     }
 
     private void createImages() {
@@ -246,9 +251,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
 
-        this.gameThread = new GameThread(this, gameWorld, holder);
-        this.gameThread.setRunning(true);
-        this.gameThread.start();
+        this.holder=holder;
 
     }
 
