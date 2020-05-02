@@ -2,8 +2,7 @@ package com.example.peew;
 
 import android.content.Context;
 import android.media.MediaPlayer;
-import android.media.SoundPool;
-import android.provider.MediaStore;
+
 
 public class SoundPlayer {
 

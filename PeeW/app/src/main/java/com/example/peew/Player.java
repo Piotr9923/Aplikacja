@@ -3,7 +3,7 @@ package com.example.peew;
 public class Player extends GameMovingObject {
 
     private int jumpHeight;
-    private int jumpRating;
+    private int jumpRange;
     private boolean isStandingOnPlatform = true;
     private int startX, startY;
     private int maxVx;
@@ -13,7 +13,7 @@ public class Player extends GameMovingObject {
 
     public Player(){
         super();
-        jumpRating=20;
+        jumpRange =20;
         maxVx=6;
         maxVy=-6;
         canKick =false;
@@ -36,6 +36,7 @@ public class Player extends GameMovingObject {
 
     }
 
+    @Override
     public void update(){
 
         x=x+vx;
@@ -49,7 +50,7 @@ public class Player extends GameMovingObject {
     public void setVy(float vy){
         if(vy<0 && isStandingOnPlatform==true) {
             canFall=false;
-            jumpHeight= (int) (y+jumpRating*vy);
+            jumpHeight= (int) (y+ jumpRange *vy);
         }
 
         this.vy=vy;

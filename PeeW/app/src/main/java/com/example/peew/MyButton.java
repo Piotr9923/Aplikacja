@@ -24,7 +24,7 @@ public class MyButton {
     }
 
 
-    public void isClicked(float touchedX, float touchedY){
+    public void checkIsClicked(float touchedX, float touchedY){
 
         if(touchedX>x*scaleX && touchedX<(x+width)*scaleX && touchedY>y*scaleY && touchedY<(y+height)*scaleY){
 

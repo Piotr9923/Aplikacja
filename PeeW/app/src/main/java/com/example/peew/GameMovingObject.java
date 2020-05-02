@@ -46,4 +46,9 @@ public class GameMovingObject extends GameObject {
 
         this.canFall = true;
     }
+
+    public void update(){
+
+
+    }
 }

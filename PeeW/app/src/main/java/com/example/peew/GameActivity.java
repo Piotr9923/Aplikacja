@@ -30,11 +30,9 @@ public class GameActivity extends Activity {
 
         setContentView(gameView);
 
-        this.gameThread = new GameThread(gameView, gameWorld, gameView.getHolder());
+        this.gameThread = new GameThread(gameView, gameWorld);
         this.gameThread.setRunning(true);
         this.gameThread.start();
-
-
 
     }
 
@@ -44,4 +42,6 @@ public class GameActivity extends Activity {
 
         soundPlayer.stopBackgroundMusic();
     }
+
+
 }

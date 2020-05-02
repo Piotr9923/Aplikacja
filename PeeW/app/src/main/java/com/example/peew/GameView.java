@@ -39,7 +39,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     private boolean isKickingView;
     private float kickedX,kickedY;
 
-    private SurfaceHolder holder;
 
     public GameView(Context context, GameWorld gameWorld) {
         super(context);
@@ -68,10 +67,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
         this.getHolder().addCallback(this);
 
-    }
-
-    public SurfaceHolder getSurfaceHolder(){
-        return holder;
     }
 
     private void createImages() {
@@ -153,7 +148,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         leftButton = new MovingButton(90, 800, leftButtonImage.getWidth(), leftButtonImage.getHeight(), player, true, scaleX, scaleY);
         rightButton = new MovingButton(350, 800, rightButtonImage.getWidth(), rightButtonImage.getHeight(), player, false, scaleX, scaleY);
         jumpButton = new JumpButton(1500, 800, jumpButtonImage.getWidth(), jumpButtonImage.getHeight(), player, scaleX, scaleY);
-        kickButton = new KickButton(1250, 800, kickButtonImage.getWidth(), kickButtonImage.getHeight(), gameWorld, scaleX, scaleY);
+        kickButton = new KickButton(1250, 800, kickButtonImage.getWidth(), kickButtonImage.getHeight(), scaleX, scaleY);
         resetLevelButton = new ResetLevelButton(1670, 20, resetLevelButtonImage.getWidth(), resetLevelButtonImage.getHeight(), gameWorld, scaleX, scaleY);
 
     }
@@ -251,8 +246,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
 
-        this.holder=holder;
-
     }
 
     @Override
@@ -279,26 +272,26 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
             clickedY1 = event.getY(1);
 
             if(isKickingView==false) {
-                leftButton.isClicked(clickedX1, clickedY1);
-                rightButton.isClicked(clickedX1, clickedY1);
-                jumpButton.isClicked(clickedX1, clickedY1);
-                resetLevelButton.isClicked(clickedX1, clickedY1);
+                leftButton.checkIsClicked(clickedX1, clickedY1);
+                rightButton.checkIsClicked(clickedX1, clickedY1);
+                jumpButton.checkIsClicked(clickedX1, clickedY1);
+                resetLevelButton.checkIsClicked(clickedX1, clickedY1);
 
             }
-            if(player.getCanKick()==true) kickButton.isClicked(clickedX, clickedY);
+            if(player.getCanKick()==true) kickButton.checkIsClicked(clickedX, clickedY);
 
         }
 
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
 
             if(isKickingView==false) {
-                leftButton.isClicked(clickedX, clickedY);
-                rightButton.isClicked(clickedX, clickedY);
-                jumpButton.isClicked(clickedX, clickedY);
-                resetLevelButton.isClicked(clickedX, clickedY);
+                leftButton.checkIsClicked(clickedX, clickedY);
+                rightButton.checkIsClicked(clickedX, clickedY);
+                jumpButton.checkIsClicked(clickedX, clickedY);
+                resetLevelButton.checkIsClicked(clickedX, clickedY);
 
             }
-            if(player.getCanKick()==true) kickButton.isClicked(clickedX, clickedY);
+            if(player.getCanKick()==true) kickButton.checkIsClicked(clickedX, clickedY);
             isKickingView = kickButton.getIsKicked();
 
             if(isKickingView==true){

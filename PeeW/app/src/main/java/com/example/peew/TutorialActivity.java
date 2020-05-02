@@ -17,8 +17,8 @@ public class TutorialActivity extends Activity {
     private ImageView image;
     private int imageId;
     private Bitmap[] tutorialImages;
-    private TextView describe;
-    private int[] strings;
+    private TextView describeTextView;
+    private int[] describes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +35,9 @@ public class TutorialActivity extends Activity {
         tutorialImages = new Bitmap[7];
         loadImages();
 
-        describe = (TextView) findViewById(R.id.describe);
+        describeTextView = (TextView) findViewById(R.id.describe);
 
-        strings = new int[7];
+        describes = new int[7];
         loadDescribes();
 
         closeButton = (Button) findViewById(R.id.close);
@@ -87,13 +87,13 @@ public class TutorialActivity extends Activity {
 
     private void loadDescribes(){
 
-        strings[0]=R.string.tutorial0;
-        strings[1]=R.string.tutorial1;
-        strings[2]=R.string.tutorial2;
-        strings[3]=R.string.tutorial3;
-        strings[4]=R.string.tutorial4;
-        strings[5]=R.string.tutorial5;
-        strings[6]=R.string.tutorial6;
+        describes[0]=R.string.tutorial0;
+        describes[1]=R.string.tutorial1;
+        describes[2]=R.string.tutorial2;
+        describes[3]=R.string.tutorial3;
+        describes[4]=R.string.tutorial4;
+        describes[5]=R.string.tutorial5;
+        describes[6]=R.string.tutorial6;
 
     }
 
@@ -102,7 +102,7 @@ public class TutorialActivity extends Activity {
 
         image.setImageBitmap(tutorialImages[imageId]);
 
-        describe.setText(strings[imageId]);
+        describeTextView.setText(describes[imageId]);
 
         if(imageId==0) previousButton.setVisibility(View.INVISIBLE);
         else previousButton.setVisibility(View.VISIBLE);

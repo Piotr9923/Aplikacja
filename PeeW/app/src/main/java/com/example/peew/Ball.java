@@ -49,6 +49,7 @@ public class Ball extends GameMovingObject {
         return  isInGoal;
     }
 
+    @Override
     public void update() {
 
         if(passKick==true){

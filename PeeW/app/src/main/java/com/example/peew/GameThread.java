@@ -10,10 +10,11 @@ public class GameThread extends Thread {
     private SurfaceHolder surfaceHolder;
     private GameWorld gameWorld;
 
-    public GameThread(GameView gameView,GameWorld gameWorld, SurfaceHolder surfaceHolder)  {
+    public GameThread(GameView gameView,GameWorld gameWorld)  {
         this.gameView = gameView;
-        this.surfaceHolder = surfaceHolder;
+        this.surfaceHolder = gameView.getHolder();
         this.gameWorld = gameWorld;
+
     }
 
     @Override

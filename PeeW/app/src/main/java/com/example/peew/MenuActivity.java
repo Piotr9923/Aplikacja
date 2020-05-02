@@ -18,7 +18,7 @@ import java.util.Locale;
 
 public class MenuActivity extends Activity {
 
-    private Button startGameButton, exitGameButton, howToPlay;
+    private Button startGameButton, exitGameButton, howToPlayButton;
     private ImageView language;
     private Bitmap pl,en;
 
@@ -47,7 +47,7 @@ public class MenuActivity extends Activity {
 
         startGameButton = (Button) findViewById(R.id.startGameButton);
         exitGameButton = (Button) findViewById(R.id.exit);
-        howToPlay = (Button) findViewById(R.id.how);
+        howToPlayButton = (Button) findViewById(R.id.how);
 
         startGameButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,7 +66,7 @@ public class MenuActivity extends Activity {
             }
         });
 
-        howToPlay.setOnClickListener(new View.OnClickListener() {
+        howToPlayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MenuActivity.this, TutorialActivity.class);

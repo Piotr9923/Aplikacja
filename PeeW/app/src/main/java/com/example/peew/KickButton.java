@@ -2,31 +2,29 @@ package com.example.peew;
 
 public class KickButton extends MyButton {
 
-    private GameWorld gameWorld;
-    private boolean isKicked;
+    private boolean isClicked;
 
-    public KickButton(int x, int y, int width, int height, GameWorld gameWorld, float scaleX, float scaleY){
+    public KickButton(int x, int y, int width, int height, float scaleX, float scaleY){
 
         super(x, y, width, height, scaleX, scaleY);
 
-        this.gameWorld=gameWorld;
-        isKicked = false;
+        isClicked = false;
     }
 
     public boolean getIsKicked(){
-        return isKicked;
+        return isClicked;
     }
 
     public void setIsKickedFalse(){
-        this.isKicked = false;
+        this.isClicked = false;
     }
 
 
     @Override
     public void action(){
 
-        if(isKicked == true) isKicked=false;
-        else isKicked = true;
+        if(isClicked == true) isClicked =false;
+        else isClicked = true;
     }
 
 

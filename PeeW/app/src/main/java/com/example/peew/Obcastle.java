@@ -4,7 +4,7 @@ public class Obcastle extends GameMovingObject {
 
     private int type;
     private int xMin,xMax,yMin,yMax;
-    private int stop;
+    private int stopTime;
     public Obcastle(int x, int y, int type){
 
         super(x,y);
@@ -20,7 +20,7 @@ public class Obcastle extends GameMovingObject {
         this.yMin=y;
         this.yMax=y;
 
-        this.stop=5;
+        this.stopTime =5;
 
         this.type=type;
 
@@ -59,9 +59,10 @@ public class Obcastle extends GameMovingObject {
         else xMax=xMax+50;
     }
 
+    @Override
     public void update(){
 
-        if(stop==70) {
+        if(stopTime ==70) {
             if(type==1 || type==3) {
 
 
@@ -69,7 +70,7 @@ public class Obcastle extends GameMovingObject {
 
                 if (y <= yMin || y >= yMax) {
                     vy = -vy;
-                    stop=0;
+                    stopTime =0;
                 }
 
                 if (y >= yMax) y = yMax;
@@ -82,14 +83,14 @@ public class Obcastle extends GameMovingObject {
 
                 if (x <= xMin || x >= xMax) {
                     vx = -vx;
-                    stop=0;
+                    stopTime =0;
                 }
 
                 if (x >= xMax) x = xMax;
                 else if (x <= xMin) x = xMin;
             }
         }
-        else stop++;
+        else stopTime++;
     }
 
     public int getType(){
