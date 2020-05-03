@@ -182,8 +182,10 @@ public class CollisionDetector {
 
         }
 
-        if(isCollision==true && object.getVy()<0) {object.setVx(-object.getVx());}
-        if(isCollision==true && object.getVy()<0) {object.setVy(6);object.setCanFallTrue();}
+        if(object!=player && isCollision==true && object.getVy()<0) {object.setVx(-object.getVx());}
+
+        if(isCollision==true && object.getVy()<0) {object.setY(object.getY()-object.getVy());object.setVy(6);object.setCanFallTrue();}
+
 
     }
 

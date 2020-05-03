@@ -5,6 +5,7 @@ public class Obcastle extends GameMovingObject {
     private int type;
     private int xMin,xMax,yMin,yMax;
     private int stopTime;
+
     public Obcastle(int x, int y, int type){
 
         super(x,y);

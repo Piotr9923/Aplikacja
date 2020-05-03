@@ -123,13 +123,13 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         playerStandingImage = BitmapFactory.decodeResource(this.getResources(), R.drawable.player);
         playerStandingImage = Bitmap.createScaledBitmap(playerStandingImage, player.getWidth(), player.getHeight(), true);
 
-        playerRightMoving[0] = BitmapFactory.decodeResource(this.getResources(), R.drawable.playerrigth1);
+        playerRightMoving[0] = BitmapFactory.decodeResource(this.getResources(), R.drawable.playerright1);
         playerRightMoving[0] = Bitmap.createScaledBitmap(playerRightMoving[0], player.getWidth(), player.getHeight(), true);
 
         playerRightMoving[1] = BitmapFactory.decodeResource(this.getResources(), R.drawable.playerright2);
         playerRightMoving[1] = Bitmap.createScaledBitmap(playerRightMoving[1], player.getWidth(), player.getHeight(), true);
 
-        playerRightMoving[2] = BitmapFactory.decodeResource(this.getResources(), R.drawable.playerrigth3);
+        playerRightMoving[2] = BitmapFactory.decodeResource(this.getResources(), R.drawable.playerright3);
         playerRightMoving[2] = Bitmap.createScaledBitmap(playerRightMoving[2], player.getWidth(), player.getHeight(), true);
 
         playerLeftMoving[0] = BitmapFactory.decodeResource(this.getResources(), R.drawable.playerleft1);
