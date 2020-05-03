@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -36,6 +38,7 @@ public class TutorialActivity extends Activity {
         loadImages();
 
         describeTextView = (TextView) findViewById(R.id.describe);
+        describeTextView.setMovementMethod(new ScrollingMovementMethod());
 
         describes = new int[7];
         loadDescribes();
@@ -99,6 +102,8 @@ public class TutorialActivity extends Activity {
 
     private void updateView(){
 
+        if(imageId<0) imageId=0;
+        if(imageId>tutorialImages.length-1) imageId=tutorialImages.length-1;
 
         image.setImageBitmap(tutorialImages[imageId]);
 
@@ -108,6 +113,8 @@ public class TutorialActivity extends Activity {
         else previousButton.setVisibility(View.VISIBLE);
         if(imageId==tutorialImages.length-1) nextButton.setVisibility(View.INVISIBLE);
         else nextButton.setVisibility(View.VISIBLE);
+
+        describeTextView.setScrollY(0);
 
     }
 

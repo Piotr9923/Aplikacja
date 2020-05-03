@@ -69,6 +69,7 @@
         android:layout_marginEnd="11dp"
         android:layout_marginRight="11dp"
         android:layout_toEndOf="@+id/tutorialImage"
-        android:layout_toRightOf="@+id/tutorialImage" />
+        android:layout_toRightOf="@+id/tutorialImage"
+        android:scrollHorizontally="true"/>
 
 </RelativeLayout>
